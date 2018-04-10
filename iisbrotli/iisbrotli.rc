@@ -5,6 +5,6 @@
 #define RC_VERSION_INTERNAL_NAME        "iisbrotli\0"
 #define RC_VERSION_ORIGINAL_FILE_NAME   "iisbrotli.dll\0"
 #define RC_VERSION_FILE_DESCRIPTION     "IIS Brotli Compression Scheme"
-#define RC_VERSION_LEGAL_COPYRIGHT      "Copyright \251 2017 Microsoft Corporation\0"
+#define RC_VERSION_LEGAL_COPYRIGHT      "Copyright \251 2018 Microsoft Corporation\0"
 
 #include <bldver.rc>
