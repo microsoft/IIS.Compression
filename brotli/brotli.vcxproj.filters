@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{73dd61b3-b05a-4bc8-a800-e09a04deeba9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="enc">
+      <UniqueIdentifier>{051d0789-c627-452a-b786-ae76e53d3a15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dec">
+      <UniqueIdentifier>{3ce82ce9-092a-42a3-97a9-e197028398c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{fac72805-38f1-4b08-9fc2-dc723f11e284}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="dec\bit_reader.h">
+      <Filter>dec</Filter>
+    </ClInclude>
+    <ClInclude Include="dec\context.h">
+      <Filter>dec</Filter>
+    </ClInclude>
+    <ClInclude Include="dec\huffman.h">
+      <Filter>dec</Filter>
+    </ClInclude>
+    <ClInclude Include="dec\port.h">
+      <Filter>dec</Filter>
+    </ClInclude>
+    <ClInclude Include="dec\prefix.h">
+      <Filter>dec</Filter>
+    </ClInclude>
+    <ClInclude Include="dec\state.h">
+      <Filter>dec</Filter>
+    </ClInclude>
+    <ClInclude Include="dec\transform.h">
+      <Filter>dec</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\backward_references.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\backward_references_hq.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\backward_references_inc.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\bit_cost.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\bit_cost_inc.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\block_encoder_inc.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\block_splitter.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\block_splitter_inc.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\brotli_bit_stream.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\cluster.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\cluster_inc.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\command.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\compress_fragment.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\compress_fragment_two_pass.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\context.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\dictionary_hash.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\entropy_encode.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\entropy_encode_static.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\fast_log.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\find_match_length.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\hash.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\hash_forgetful_chain_inc.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\hash_longest_match_inc.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\hash_longest_match_quickly_inc.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\hash_longest_match64_inc.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\hash_to_binary_tree_inc.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\histogram.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\histogram_inc.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\literal_cost.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\memory.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\metablock.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\metablock_inc.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\port.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\prefix.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\quality.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\ringbuffer.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\static_dict.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\static_dict_lut.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\utf8_util.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="enc\write_bits.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="common\constants.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\dictionary.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\version.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="include\brotli\decode.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\brotli\encode.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\brotli\port.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\brotli\types.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dec\bit_reader.c">
+      <Filter>dec</Filter>
+    </ClCompile>
+    <ClCompile Include="dec\decode.c">
+      <Filter>dec</Filter>
+    </ClCompile>
+    <ClCompile Include="dec\huffman.c">
+      <Filter>dec</Filter>
+    </ClCompile>
+    <ClCompile Include="dec\state.c">
+      <Filter>dec</Filter>
+    </ClCompile>
+    <ClCompile Include="enc\backward_references.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="enc\backward_references_hq.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="enc\bit_cost.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="enc\block_splitter.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="enc\brotli_bit_stream.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="enc\cluster.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="enc\compress_fragment.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="enc\compress_fragment_two_pass.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="enc\dictionary_hash.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="enc\encode.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="enc\entropy_encode.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="enc\histogram.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="enc\literal_cost.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="enc\memory.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="enc\metablock.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="enc\static_dict.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="enc\utf8_util.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="common\dictionary.c">
+      <Filter>common</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
