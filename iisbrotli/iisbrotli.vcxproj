@@ -60,10 +60,10 @@
     <ClCompile>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableSpecificWarnings>4091</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\IIS-Common\Include;$(SolutionDir)\brotli\include;$(SolutionDir)\brotli\include\brotli;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\IIS-Common\Include;$(SolutionDir)\brotli\include;$(SolutionDir)\brotli\include\brotli;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\IIS-Common\Include;$(SolutionDir)\brotli\include;$(SolutionDir)\brotli\include\brotli;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)\IIS-Common\Include;$(SolutionDir)\brotli\include;$(SolutionDir)\brotli\include\brotli;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\IIS-Common\Include;$(SubmoduleBrotli)\c\include;$(SubmoduleBrotli)\c\include\brotli;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\IIS-Common\Include;$(SubmoduleBrotli)\c\include;$(SubmoduleBrotli)\c\include\brotli;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\IIS-Common\Include;$(SubmoduleBrotli)\c\include;$(SubmoduleBrotli)\c\include\brotli;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)\IIS-Common\Include;$(SubmoduleBrotli)\c\include;$(SubmoduleBrotli)\c\include\brotli;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
