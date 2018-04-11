@@ -1,0 +1,9 @@
+[submodule "IIS-Common"]
+	path = IIS-Common
+	url = https://github.com/Microsoft/IIS.Common.git
+[submodule "submodules/zlib"]
+	path = submodules/zlib
+	url = https://github.com/madler/zlib.git
+[submodule "submodules/brotli"]
+	path = submodules/brotli
+	url = https://github.com/google/brotli.git

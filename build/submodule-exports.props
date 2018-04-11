@@ -1,0 +1,43 @@
+<Project InitialTargets="EnsureCommonExists" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!-- Provide exports to submodule hosts --> 
+
+  <PropertyGroup>
+    <IIS-Compression Condition="$(IIS-Compression) == ''">$(MSBuildThisFileDirectory)..\</IIS-Compression>
+  </PropertyGroup>
+
+  <!-- Imports for when this solution is a submodule host -->
+
+  <PropertyGroup>
+    <_IIS-CommonExportsPath>$(IIS-Compression)IIS-Common\build\submodule-exports.props</_IIS-CommonExportsPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <_SubmoduleZlibPath>$(IIS-Compression)submodules\zlib</_SubmoduleZlibPath>
+    <_SubmoduleBrotliPath>$(IIS-Compression)submodules\brotli</_SubmoduleBrotliPath>
+    <_SubmoduleZlibHeaderPath>$(_SubmoduleZlibPath)\zlib.h</_SubmoduleZlibHeaderPath>
+    <_SubmoduleBrotliHeaderPath>$(_SubmoduleBrotliPath)\c\include\brotli\encode.h</_SubmoduleBrotliHeaderPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <SubmoduleZlib Condition="$(SubmoduleZlib) == '' AND Exists('$(_SubmoduleZlibHeaderPath)')">$(_SubmoduleZlibPath)</SubmoduleZlib>
+    <SubmoduleBrotli Condition="$(SubmoduleBrotli) == '' AND Exists('$(_SubmoduleBrotliHeaderPath)')">$(_SubmoduleBrotliPath)</SubmoduleBrotli>
+  </PropertyGroup>
+
+  <Import Condition="$(IIS-Common) == '' AND Exists('$(_IIS-CommonExportsPath)')" Project="$(_IIS-CommonExportsPath)" />
+
+  <!-- Build error if submodule dependencies could not be found. -->
+
+  <Target Name="EnsureCommonExists">
+    <Error Condition="!Exists($(IIS-Common))" Text="The IIS-Common submodule could not be found. Use 'git submodule update --init --recursive' to pull down the IIS-Common repository." />
+  </Target>
+
+  <Target Name="EnsureSubmoduleZlibExists" AfterTargets="EnsureCommonExists">
+    <Error Condition="!Exists($(SubmoduleZlib))" Text="The zlib submodule could not be found. Use 'git submodule update --init --recursive' to pull down the zlib repository." />
+  </Target>
+
+  <Target Name="EnsureSubmoduleBrotliExists" AfterTargets="EnsureSubmoduleZlibExists">
+    <Error Condition="!Exists($(SubmoduleBrotli))" Text="The brotli submodule could not be found. Use 'git submodule update --init --recursive' to pull down the brotli repository." />
+  </Target>
+
+</Project>

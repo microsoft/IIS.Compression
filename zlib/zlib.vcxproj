@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(ProjectDir)..\build\submodule.props" Condition="Exists('$(ProjectDir)..\build\submodule.props')" />
+  <Import Project="$(IIS-Common)build\settings.props" Condition="Exists('$(IIS-Common)build\settings.props')" />
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{8D460A29-85AF-4884-A839-160862A94130}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Lib</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup>
+    <IncludePath>$(IIS-Common)Include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="$(SubmoduleZlib)\crc32.h" />
+    <ClInclude Include="$(SubmoduleZlib)\deflate.h" />
+    <ClInclude Include="$(SubmoduleZlib)\gzguts.h" />
+    <ClInclude Include="$(SubmoduleZlib)\inffast.h" />
+    <ClInclude Include="$(SubmoduleZlib)\inffixed.h" />
+    <ClInclude Include="$(SubmoduleZlib)\inflate.h" />
+    <ClInclude Include="$(SubmoduleZlib)\inftrees.h" />
+    <ClInclude Include="$(SubmoduleZlib)\trees.h" />
+    <ClInclude Include="$(SubmoduleZlib)\zconf.h" />
+    <ClInclude Include="$(SubmoduleZlib)\zlib.h" />
+    <ClInclude Include="$(SubmoduleZlib)\zutil.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(SubmoduleZlib)\adler32.c" />
+    <ClCompile Include="$(SubmoduleZlib)\compress.c" />
+    <ClCompile Include="$(SubmoduleZlib)\crc32.c" />
+    <ClCompile Include="$(SubmoduleZlib)\deflate.c" />
+    <ClCompile Include="$(SubmoduleZlib)\gzclose.c" />
+    <ClCompile Include="$(SubmoduleZlib)\gzlib.c" />
+    <ClCompile Include="$(SubmoduleZlib)\gzread.c" />
+    <ClCompile Include="$(SubmoduleZlib)\gzwrite.c" />
+    <ClCompile Include="$(SubmoduleZlib)\infback.c" />
+    <ClCompile Include="$(SubmoduleZlib)\inffast.c" />
+    <ClCompile Include="$(SubmoduleZlib)\inflate.c" />
+    <ClCompile Include="$(SubmoduleZlib)\inftrees.c" />
+    <ClCompile Include="$(SubmoduleZlib)\trees.c" />
+    <ClCompile Include="$(SubmoduleZlib)\uncompr.c" />
+    <ClCompile Include="$(SubmoduleZlib)\zutil.c" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <Target Name="EnsureImportsExist" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project is trying to import a missing file: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(ProjectDir)..\build\submodule.props')" Text="$([System.String]::Format('$(ErrorText)', '$(ProjectDir)..\build\submodule.props'))" />
+    <Error Condition="!Exists('$(IIS-Common)build\settings.props')" Text="$([System.String]::Format('$(ErrorText)', '$(IIS-Common)build\settings.props'))" />
+  </Target>
+</Project>

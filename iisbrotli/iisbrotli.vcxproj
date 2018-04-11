@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(ProjectDir)..\build\submodule.props" Condition="Exists('$(ProjectDir)..\build\submodule.props')" />
+  <Import Project="$(IIS-Common)build\versions.props" Condition="Exists('$(IIS-Common)build\versions.props')" />
+  <Import Project="$(IIS-Common)build\settings.props" Condition="Exists('$(IIS-Common)build\settings.props')" />
+  <Import Project="$(IIS-Common)build\sign.props" Condition="Exists('$(IIS-Common)build\sign.props')" />
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\brotli\brotli.vcxproj">
+      <Project>{67aaf490-c8a7-4020-bb96-593b2001ea4d}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="iisbrotli.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="iisbrotli.rc">
+      <PreprocessorDefinitions>$(ResourceCompilePreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CA3EFC47-0ABB-45AD-B672-F1D6066BF62A}</ProjectGuid>
+    <RootNamespace>Runtime</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup>
+    <IncludePath>$(ProjectDir)include;$(IIS-Common)version;$(IIS-Common)Include;$(WindowsSDK_IncludePath);$(IncludePath);</IncludePath>
+    <TargetName>$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <DisableSpecificWarnings>4091</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\IIS-Common\Include;$(SubmoduleBrotli)\c\include;$(SubmoduleBrotli)\c\include\brotli;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\IIS-Common\Include;$(SubmoduleBrotli)\c\include;$(SubmoduleBrotli)\c\include\brotli;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\IIS-Common\Include;$(SubmoduleBrotli)\c\include;$(SubmoduleBrotli)\c\include\brotli;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)\IIS-Common\Include;$(SubmoduleBrotli)\c\include;$(SubmoduleBrotli)\c\include\brotli;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <Target Name="EnsureImportsExist" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project is trying to import a missing file: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(ProjectDir)..\build\submodule.props')" Text="$([System.String]::Format('$(ErrorText)', '$(ProjectDir)..\build\submodule.props'))" />
+    <Error Condition="!Exists('$(IIS-Common)build\versions.props')" Text="$([System.String]::Format('$(ErrorText)', '$(IIS-Common)build\versions.props'))" />
+    <Error Condition="!Exists('$(IIS-Common)build\settings.props')" Text="$([System.String]::Format('$(ErrorText)', '$(IIS-Common)build\settings.props'))" />
+    <Error Condition="!Exists('$(IIS-Common)build\sign.props')" Text="$([System.String]::Format('$(ErrorText)', '$(IIS-Common)build\sign.props'))" />
+    <Error Condition="!Exists('$(IIS-Common)build\copy-outputs.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(IIS-Common)build\copy-outputs.targets'))" />
+    <Error Condition="!Exists('$(UserProfile)\.nuget\packages\MicroBuild.Core\$(MicroBuildVersion)\build\MicroBuild.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(UserProfile)\.nuget\packages\MicroBuild.Core\$(MicroBuildVersion)\build\MicroBuild.Core.targets'))" />
+  </Target>
+  <Import Project="$(UserProfile)\.nuget\packages\MicroBuild.Core\$(MicroBuildVersion)\build\MicroBuild.Core.targets" Condition="Exists('$(UserProfile)\.nuget\packages\MicroBuild.Core\$(MicroBuildVersion)\build\MicroBuild.Core.targets')" />
+  <Import Project="$(IIS-Common)build\copy-outputs.targets" Condition="Exists('$(IIS-Common)build\copy-outputs.targets')" />
+</Project>
