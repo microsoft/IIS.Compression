@@ -1,14 +1,12 @@
 Microsoft IIS Compression
 --------------------------------
 
-**IISCompression** offers two IIS compression scheme providers `iiszlib.dll` and `iisbrotli.dll` that can be loaded by IIS `StaticCompressionModule` and `DynamicCompressionModule` at runtime to support Gzip/Deflate and Brotli compression, respectively.
+**IIS Compression** is a bundle of two IIS compression scheme providers `iisbrotli.dll` and `iiszlib.dll` that support IIS to compress HTTP response contents. `iisbrotli.dll` supports **Brotli** compression, while `iiszlib.dll` supports both **Gzip** and **Deflate** compression.
 
-Documentation is available at https://docs.microsoft.com/en-us/iis/extensions/compression/iiscompression-overview.
+An IIS compression scheme provider is a pluggable extension of IIS `StaticCompressionModule` and `DynamicCompressionModule` - essentially a dynamic link library (dll) that implements and exposes the [IIS HTTP Compression API](https://msdn.microsoft.com/en-us/library/dd692872.aspx). IIS `StaticCompressionModule` and `DynamicCompressionModule` load the registered compression scheme providers into worker process at runtime, and leverage them to perform compression for static files and dynamically-generated contents, respectively.
 
 ### Installation
-The latest installer can be obtained from https://www.iis.net/downloads/microsoft/iis-compression.
-
-The installer registers `iisbrotli.dll` as the `br` (Brotli) compression scheme provider in `applicationHost.config`. It also replaces the default `gzip` compression scheme provider `gzip.dll` with `iiszlib.dll`. A sample `httpCompression` section in `applicationHost.config` is shown below:
+The IIS Compression installer registers `iisbrotli.dll` as the `br` (Brotli) compression scheme provider in `applicationHost.config`. It also replaces the default `gzip` compression scheme provider `gzip.dll` with `iiszlib.dll`. A sample `httpCompression` section in `applicationHost.config` is shown below:
 
 ```
 <httpCompression directory="%SystemDrive%\inetpub\temp\IIS Temporary Compressed Files">
