@@ -1,22 +1,5 @@
-/*++
-
-    Module Name:
-
-        iisbrotli
-
-    Abstract:
-
-        IIS brotli compression scheme
-
-    Author:
-
-        Yanbing Shi (yashi)  Dec-2017
-
-    Environment:
-
-        Win32 - User Mode
-
---*/
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT license.
 
 #include "stdafx.h"
 
