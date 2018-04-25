@@ -1,9 +1,9 @@
 Microsoft IIS Compression
 --------------------------------
 
-**IIS Compression** is a bundle of two IIS compression scheme providers `iisbrotli.dll` and `iiszlib.dll` that support IIS to compress HTTP response contents. `iisbrotli.dll` supports **Brotli** compression, while `iiszlib.dll` supports both **Gzip** and **Deflate** compression.
+**IIS Compression** is a bundle of two IIS compression scheme providers `iisbrotli.dll` and `iiszlib.dll` that enable IIS to compress HTTP response contents. `iisbrotli.dll` supports **Brotli** compression, while `iiszlib.dll` supports both **Gzip** and **Deflate** compression.
 
-An IIS compression scheme provider is a pluggable extension of IIS `StaticCompressionModule` and `DynamicCompressionModule` - essentially a dynamic link library (dll) that implements and exposes the [IIS HTTP Compression API](https://msdn.microsoft.com/en-us/library/dd692872.aspx). IIS `StaticCompressionModule` and `DynamicCompressionModule` load the registered compression scheme providers into worker process at runtime, and leverage them to perform compression for static files and dynamically-generated contents, respectively.
+An IIS compression scheme provider is a pluggable extension of IIS `StaticCompressionModule` and `DynamicCompressionModule` - essentially a dynamic link library (dll) that implements the compression algorithm and exposes the [IIS HTTP Compression API](https://msdn.microsoft.com/en-us/library/dd692872.aspx). IIS `StaticCompressionModule` and `DynamicCompressionModule` load the registered compression scheme providers into worker process at runtime, and leverage them to perform compression for static files and dynamically-generated contents, respectively.
 
 ### Installation
 The IIS Compression installer registers `iisbrotli.dll` as the `br` (Brotli) compression scheme provider in `applicationHost.config`. It also replaces the default `gzip` compression scheme provider `gzip.dll` with `iiszlib.dll`. A sample `httpCompression` section in `applicationHost.config` is shown below:
