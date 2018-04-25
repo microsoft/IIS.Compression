@@ -1,4 +1,6 @@
-// dllmain.cpp : Defines the entry point for the DLL application.
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT license.
+
 #include "stdafx.h"
 
 DECLARE_DEBUG_PRINT_OBJECT2("iiszlib", DEBUG_FLAGS_ERROR);

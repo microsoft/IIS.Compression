@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT license.
+
 #define VER_FILETYPE                    VFT_DLL
 #define VER_FILEDESCRIPTION_STR         "IIS Brotli Compression Scheme"
 #define VER_INTERNALNAME_STR            "iisbrotli.dll"
