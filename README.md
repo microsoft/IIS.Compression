@@ -10,14 +10,24 @@ The IIS Compression installer registers `iisbrotli.dll` as the `br` (Brotli) com
 
 ```
 <httpCompression directory="%SystemDrive%\inetpub\temp\IIS Temporary Compressed Files">
-    <scheme name="br" dll="%windir%\system32\inetsrv\iisbrotli.dll" />
-    <scheme name="gzip" dll="%windir%\system32\inetsrv\iiszlib.dll" />
-    <staticTypes>
-        ...
-    </staticTypes>
+    <scheme name="br" dll="%ProgramFiles%\IIS\IIS Compression\iisbrotli.dll" />
+    <scheme name="gzip" dll="%ProgramFiles%\IIS\IIS Compression\iiszlib.dll" />
     <dynamicTypes>
-        ...
+        <add mimeType="text/*" enabled="true" />
+        <add mimeType="message/*" enabled="true" />
+        <add mimeType="application/x-javascript" enabled="true" />
+        <add mimeType="application/javascript" enabled="true" />
+        <add mimeType="*/*" enabled="false" />
     </dynamicTypes>
+    <staticTypes>
+        <add mimeType="text/*" enabled="true" />
+        <add mimeType="message/*" enabled="true" />
+        <add mimeType="application/javascript" enabled="true" />
+        <add mimeType="application/atom+xml" enabled="true" />
+        <add mimeType="application/xaml+xml" enabled="true" />
+        <add mimeType="image/svg+xml" enabled="true" />
+        <add mimeType="*/*" enabled="false" />
+    </staticTypes>
 </httpCompression>
 ```
 
