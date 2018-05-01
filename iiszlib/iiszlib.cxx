@@ -452,12 +452,12 @@ ConvertFlushMode(
 
     switch (operation)
     {
-    case COMPRESSION_OPERATION_PROCESS:
+    case IIS_COMPRESSION_OPERATION_PROCESS:
         break;
-    case COMPRESSION_OPERATION_FLUSH:
+    case IIS_COMPRESSION_OPERATION_FLUSH:
         flushMode = Z_SYNC_FLUSH;
         break;
-    case COMPRESSION_OPERATION_FINISH:
+    case IIS_COMPRESSION_OPERATION_FINISH:
         flushMode = Z_FINISH;
         break;
     default:

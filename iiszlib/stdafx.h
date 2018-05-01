@@ -30,17 +30,17 @@
 #define DLLEXP extern "C" __declspec(dllexport)
 
 // Constants
-#define COMPRESSION_FLAG_DEFLATE        0x00000000
-#define COMPRESSION_FLAG_GZIP           0x00000001
-#define COMPRESSION_FLAG_INVALID        0xFFFFFFFF
+#define COMPRESSION_FLAG_DEFLATE            0x00000000
+#define COMPRESSION_FLAG_GZIP               0x00000001
+#define COMPRESSION_FLAG_INVALID            0xFFFFFFFF
 
-#define COMPRESSION_OPERATION_PROCESS   0
-#define COMPRESSION_OPERATION_FLUSH     1
-#define COMPRESSION_OPERATION_FINISH    2
+#define IIS_COMPRESSION_OPERATION_PROCESS   0
+#define IIS_COMPRESSION_OPERATION_FLUSH     1
+#define IIS_COMPRESSION_OPERATION_FINISH    2
 
-#define ZLIB_DEF_MEM_LEVEL              8   // default memLevel
-#define ZLIB_DEF_WINDOW_BITS            15  // default windowBits, 2^15 ~ 32K window size, RFC 1951
-#define ZLIB_PARAMETER_UNSET            -1
+#define ZLIB_DEF_MEM_LEVEL                  8   // default memLevel
+#define ZLIB_DEF_WINDOW_BITS                15  // default windowBits, 2^15 ~ 32K window size, RFC 1951
+#define ZLIB_PARAMETER_UNSET                -1
 
 // Global variables
 extern INT                              g_intWindowBits;

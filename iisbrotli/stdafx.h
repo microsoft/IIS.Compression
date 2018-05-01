@@ -31,11 +31,11 @@
 #define DLLEXP extern "C" __declspec(dllexport)
 
 // Constants
-#define COMPRESSION_OPERATION_PROCESS   0
-#define COMPRESSION_OPERATION_FLUSH     1
-#define COMPRESSION_OPERATION_FINISH    2
+#define IIS_COMPRESSION_OPERATION_PROCESS   0
+#define IIS_COMPRESSION_OPERATION_FLUSH     1
+#define IIS_COMPRESSION_OPERATION_FINISH    2
 
-#define BROTLI_PARAMETER_UNSET          -1
+#define BROTLI_PARAMETER_UNSET              -1
 
 // Global variables
 extern INT                              g_intEncoderOp;
