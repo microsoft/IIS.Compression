@@ -23,7 +23,7 @@ BrotliEncoderOperation ConvertFlushMode(INT operation);
 //
 // Initialize global compression 
 //
-DLLEXP HRESULT WINAPI
+HRESULT WINAPI
 InitCompression(
     VOID
 )
@@ -34,7 +34,7 @@ InitCompression(
 //
 // De-init global compression
 //
-DLLEXP VOID WINAPI
+VOID WINAPI
 DeInitCompression(
     VOID
 )
@@ -45,7 +45,7 @@ DeInitCompression(
 //
 // Reset compression context
 //
-DLLEXP HRESULT WINAPI
+HRESULT WINAPI
 ResetCompression(
     IN OUT PVOID context
 )
@@ -56,7 +56,7 @@ ResetCompression(
 //
 // Create a compression context
 //
-DLLEXP HRESULT WINAPI
+HRESULT WINAPI
 CreateCompression(
     OUT     PVOID *             context,
     IN      ULONG               flags
@@ -96,7 +96,7 @@ Finished:
 //
 // Destroy a compression context
 //
-DLLEXP VOID WINAPI
+VOID WINAPI
 DestroyCompression(
     IN PVOID context
 )
@@ -117,7 +117,7 @@ DestroyCompression(
 //
 // Compress data
 //
-DLLEXP HRESULT WINAPI
+HRESULT WINAPI
 Compress(
     IN OUT  PVOID               context,
     IN      CONST BYTE *        input_buffer,
@@ -232,7 +232,7 @@ Finished:
 //
 // Compress data with a specified flush mode
 //
-DLLEXP HRESULT WINAPI
+HRESULT WINAPI
 Compress2(
     IN OUT  PVOID               context,
     IN      CONST BYTE *        input_buffer,

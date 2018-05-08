@@ -41,6 +41,9 @@
       <PreprocessorDefinitions>$(ResourceCompilePreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="iisbrotli.def" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CA3EFC47-0ABB-45AD-B672-F1D6066BF62A}</ProjectGuid>
     <RootNamespace>Runtime</RootNamespace>
@@ -67,8 +70,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <ModuleDefinitionFile>
-      </ModuleDefinitionFile>
+      <ModuleDefinitionFile>iisbrotli.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

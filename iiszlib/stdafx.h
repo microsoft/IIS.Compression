@@ -26,9 +26,6 @@
 #endif
 #include "dbgutil.h"
 
-// Macros
-#define DLLEXP extern "C" __declspec(dllexport)
-
 // Constants
 #define COMPRESSION_FLAG_DEFLATE            0x00000000
 #define COMPRESSION_FLAG_GZIP               0x00000001

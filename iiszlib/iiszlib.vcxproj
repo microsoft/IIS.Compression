@@ -48,6 +48,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>iiszlib.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -68,6 +69,9 @@
     <ProjectReference Include="..\zlib\zlib.vcxproj">
       <Project>{8d460a29-85af-4884-a839-160862a94130}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="iiszlib.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <Target Name="EnsureImportsExist" BeforeTargets="PrepareForBuild">

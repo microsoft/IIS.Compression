@@ -28,8 +28,6 @@
 #endif
 #include "dbgutil.h"
 
-#define DLLEXP extern "C" __declspec(dllexport)
-
 // Constants
 #define IIS_COMPRESSION_OPERATION_PROCESS   0
 #define IIS_COMPRESSION_OPERATION_FLUSH     1
