@@ -1,0 +1,14 @@
+; Copyright (c) Microsoft Corporation. All rights reserved.
+; Licensed under the MIT license.
+
+LIBRARY iiszlib
+
+EXPORTS
+
+    InitCompression
+    DeInitCompression
+    CreateCompression
+    ResetCompression
+    Compress
+    Compress2
+    DestroyCompression
