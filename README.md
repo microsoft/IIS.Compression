@@ -10,6 +10,13 @@ An IIS compression scheme provider is a pluggable extension of IIS `StaticCompre
 - [Using IIS Compression](https://docs.microsoft.com/iis/extensions/iis-compression/using-iis-compression)
 
 ### Installation
+
+Download the Microsoft IIS Compression release from the following locations:
+
+- **Microsoft IIS Compression (x86)** [here](https://download.microsoft.com/download/6/1/C/61CC0718-ED0E-4351-BC54-46495EBF5CC3/iiscompression_x86.msi).
+
+- **Microsoft IIS Compression (x64)** [here](https://download.microsoft.com/download/6/1/C/61CC0718-ED0E-4351-BC54-46495EBF5CC3/iiscompression_amd64.msi).
+    
 The IIS Compression installer registers `iisbrotli.dll` as the `br` (Brotli) compression scheme provider in `applicationHost.config`. It also replaces the default `gzip` compression scheme provider `gzip.dll` with `iiszlib.dll`. A sample `httpCompression` section in `applicationHost.config` is shown below:
 
 ```
