@@ -1,6 +1,10 @@
 Microsoft IIS Compression
 --------------------------------
 
+### Documentation
+- [IIS Compression Overview](https://docs.microsoft.com/iis/extensions/iis-compression/iis-compression-overview)
+- [Using IIS Compression](https://docs.microsoft.com/iis/extensions/iis-compression/using-iis-compression)
+
 **IIS Compression** is a bundle of two IIS compression scheme providers `iisbrotli.dll` and `iiszlib.dll` that enable IIS to compress HTTP response contents. `iisbrotli.dll` supports **Brotli** compression, while `iiszlib.dll` supports both **Gzip** and **Deflate** compression.
 
 An IIS compression scheme provider is a pluggable extension of IIS `StaticCompressionModule` and `DynamicCompressionModule` - essentially a dynamic link library (dll) that implements the compression algorithm and exposes the [IIS HTTP Compression API](https://msdn.microsoft.com/en-us/library/dd692872.aspx). IIS `StaticCompressionModule` and `DynamicCompressionModule` load the registered compression scheme providers into worker process at runtime, and leverage them to perform compression for static files and dynamically-generated contents, respectively.
