@@ -142,7 +142,16 @@ Compress(
         hr = E_INVALIDARG;
         goto Finished;
     }
-    else if (pContext->_pState == NULL)
+
+    // IIS schema specifies staticCompressionLevel and dynamicCompressionLevel as uint,
+    // so only the upper bound needs to be checked.
+    if (compression_level > BROTLI_MAX_QUALITY)
+    {
+        hr = E_INVALIDARG;
+        goto Finished;
+    }
+
+    if (pContext->_pState == NULL)
     {
         // Create a BrotliEncoderState instance
         pContext->_pState = BrotliEncoderCreateInstance(NULL,   // alloc_func
@@ -258,7 +267,16 @@ Compress2(
         hr = E_INVALIDARG;
         goto Finished;
     }
-    else if (pContext->_pState == NULL)
+
+    // IIS schema specifies staticCompressionLevel and dynamicCompressionLevel as uint,
+    // so only the upper bound needs to be checked.
+    if (compression_level > BROTLI_MAX_QUALITY)
+    {
+        hr = E_INVALIDARG;
+        goto Finished;
+    }
+
+    if (pContext->_pState == NULL)
     {
         // Create a BrotliEncoderState instance
         pContext->_pState = BrotliEncoderCreateInstance(NULL,   // alloc_func

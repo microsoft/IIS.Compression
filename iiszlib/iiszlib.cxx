@@ -206,7 +206,16 @@ Compress(
         hr = E_INVALIDARG;
         goto Finished;
     }
-    else if (pContext->_fInitialized == FALSE)
+
+    // IIS schema specifies staticCompressionLevel and dynamicCompressionLevel as uint,
+    // so only the upper bound needs to be checked.
+    if (compression_level > Z_BEST_COMPRESSION)
+    {
+        hr = E_INVALIDARG;
+        goto Finished;
+    }
+
+    if (pContext->_fInitialized == FALSE)
     {
         ret = deflateInit2(&pContext->_strm,            // strm
                            compression_level,           // level
@@ -309,7 +318,16 @@ Compress2(
         hr = E_INVALIDARG;
         goto Finished;
     }
-    else if (pContext->_fInitialized == FALSE)
+
+    // IIS schema specifies staticCompressionLevel and dynamicCompressionLevel as uint,
+    // so only the upper bound needs to be checked.
+    if (compression_level > Z_BEST_COMPRESSION)
+    {
+        hr = E_INVALIDARG;
+        goto Finished;
+    }
+
+    if (pContext->_fInitialized == FALSE)
     {
         ret = deflateInit2(&pContext->_strm,            // strm
                            compression_level,           // level
