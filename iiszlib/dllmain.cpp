@@ -9,6 +9,8 @@ INT         g_intWindowBits = ZLIB_PARAMETER_UNSET;
 INT         g_intMemLevel   = ZLIB_PARAMETER_UNSET;
 INT         g_intFlushMode  = ZLIB_PARAMETER_UNSET;
 BOOL        g_fEnableZlibDeflate = FALSE;
+HANDLE      g_hEventLog     = NULL;
+BOOL        g_fEventRaised  = FALSE;
 
 VOID LoadGlobalConfiguration(VOID);
 

@@ -13,6 +13,7 @@
 #define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
 // Windows Header Files:
 #include <windows.h>
+#include <stdlib.h>
 
 // zlib Header Files:
 #include "zlib.h"
@@ -25,6 +26,7 @@
     #endif
 #endif
 #include "dbgutil.h"
+#include "iiszlib_msg.h"
 
 // Constants
 #define COMPRESSION_FLAG_DEFLATE            0x00000000
@@ -39,8 +41,12 @@
 #define ZLIB_DEF_WINDOW_BITS                15  // default windowBits, 2^15 ~ 32K window size, RFC 1951
 #define ZLIB_PARAMETER_UNSET                -1
 
+#define COMPRESSION_LEVEL_BUFFER_LENGTH     33
+
 // Global variables
 extern INT                              g_intWindowBits;
 extern INT                              g_intMemLevel;
 extern INT                              g_intFlushMode;
 extern BOOL                             g_fEnableZlibDeflate;
+extern HANDLE                           g_hEventLog;
+extern BOOL                             g_fEventRaised;

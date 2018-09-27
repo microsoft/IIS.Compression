@@ -13,6 +13,7 @@
 #define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
 // Windows Header Files:
 #include <windows.h>
+#include <stdlib.h>
 
 // Brotli Header Files
 #include "port.h"
@@ -27,6 +28,7 @@
     #endif
 #endif
 #include "dbgutil.h"
+#include "iisbrotli_msg.h"
 
 // Constants
 #define IIS_COMPRESSION_OPERATION_PROCESS   0
@@ -35,5 +37,9 @@
 
 #define BROTLI_PARAMETER_UNSET              -1
 
+#define COMPRESSION_LEVEL_BUFFER_LENGTH     33
+
 // Global variables
 extern INT                              g_intEncoderOp;
+extern HANDLE                           g_hEventLog;
+extern BOOL                             g_fEventRaised;

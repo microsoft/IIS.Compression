@@ -40,6 +40,7 @@ public:
 
 HRESULT HresultFromZlib(INT zlibErrCode);
 INT ConvertFlushMode(INT operation);
+HRESULT ReportCompressionLevelOutOfBounds(INT currentLevel, INT maxLevel);
 
 //
 // Initialize global compression 
@@ -49,6 +50,10 @@ InitCompression(
     VOID
 )
 {
+    g_hEventLog = RegisterEventSource(NULL,
+                                      L"IIS Zlib");
+
+    // Ignore the failure from RegisterEventSource
     return S_OK;
 }
 
@@ -60,6 +65,11 @@ DeInitCompression(
     VOID
 )
 {
+    if (g_hEventLog != NULL)
+    {
+        DeregisterEventSource(g_hEventLog);
+        g_hEventLog = NULL;
+    }
     return;
 }
 
@@ -211,6 +221,8 @@ Compress(
     // so only the upper bound needs to be checked.
     if (compression_level > Z_BEST_COMPRESSION)
     {
+        hr = ReportCompressionLevelOutOfBounds(compression_level, Z_BEST_COMPRESSION);
+        // Ignore any failure from event reporting
         hr = E_INVALIDARG;
         goto Finished;
     }
@@ -323,6 +335,8 @@ Compress2(
     // so only the upper bound needs to be checked.
     if (compression_level > Z_BEST_COMPRESSION)
     {
+        hr = ReportCompressionLevelOutOfBounds(compression_level, Z_BEST_COMPRESSION);
+        // Ignore any failure from event reporting
         hr = E_INVALIDARG;
         goto Finished;
     }
@@ -483,4 +497,66 @@ ConvertFlushMode(
     }
 
     return flushMode;
+}
+
+HRESULT
+ReportCompressionLevelOutOfBounds(
+    INT currentLevel,
+    INT maxLevel
+)
+{
+    WCHAR bufCurrentLevel[COMPRESSION_LEVEL_BUFFER_LENGTH];
+    WCHAR bufMaxLevel[COMPRESSION_LEVEL_BUFFER_LENGTH];
+    PCWSTR apsz[2];
+    HRESULT hr = S_OK;
+    BOOL fReport = TRUE;
+
+    if (g_fEventRaised == TRUE)
+    {
+        hr = S_OK;
+        goto Finished;
+    }
+
+    if (g_hEventLog == NULL)
+    {
+        hr = E_HANDLE;
+        goto Finished;
+    }
+
+    if (_itow_s(currentLevel,
+                bufCurrentLevel,
+                COMPRESSION_LEVEL_BUFFER_LENGTH,
+                10) != 0 ||
+        _itow_s(maxLevel,
+                bufMaxLevel,
+                COMPRESSION_LEVEL_BUFFER_LENGTH,
+                10) != 0)
+    {
+        hr = E_UNEXPECTED;
+        goto Finished;
+    }
+
+    apsz[0] = bufCurrentLevel;
+    apsz[1] = bufMaxLevel;
+
+    fReport = ReportEvent(g_hEventLog,                // hEventLog
+                          EVENTLOG_ERROR_TYPE,        // wType
+                          0,                          // wCategory
+                          ZLIB_COMPRESSION_LEVEL_OUT_OF_BOUNDS,     // dwEventID
+                          NULL,                       // lpUserSid
+                          2,                          // wNumStrings
+                          0,                          // dwDataSize
+                          apsz,                       // lpStrings
+                          NULL);                      // lpRawData
+    if (fReport == FALSE)
+    {
+        hr = HRESULT_FROM_WIN32(GetLastError());
+        goto Finished;
+    }
+
+    g_fEventRaised = TRUE;
+
+Finished:
+
+    return hr;
 }
