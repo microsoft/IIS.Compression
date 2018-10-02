@@ -39,6 +39,8 @@
 
 #define COMPRESSION_LEVEL_BUFFER_LENGTH     33
 
+#define IISBROTLI_EVENT_SOURCE_NAME         L"IISBrotli"
+
 // Global variables
 extern INT                              g_intEncoderOp;
 extern HANDLE                           g_hEventLog;

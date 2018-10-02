@@ -43,6 +43,8 @@
 
 #define COMPRESSION_LEVEL_BUFFER_LENGTH     33
 
+#define IISZLIB_EVENT_SOURCE_NAME           L"IISZlib"
+
 // Global variables
 extern INT                              g_intWindowBits;
 extern INT                              g_intMemLevel;
