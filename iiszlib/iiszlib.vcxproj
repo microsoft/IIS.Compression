@@ -45,6 +45,8 @@
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\IIS-Common\include;$(SubmoduleZlib);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\IIS-Common\include;$(SubmoduleZlib);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)\IIS-Common\include;$(SubmoduleZlib);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <SupportJustMyCode Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</SupportJustMyCode>
+      <SupportJustMyCode Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</SupportJustMyCode>
     </ClCompile>
     <Link>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
