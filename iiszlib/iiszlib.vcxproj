@@ -34,7 +34,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <PropertyGroup>
-    <IncludePath>$(ProjectDir)include;$(IIS-Common)version;$(IIS-Common)Include;$(WindowsSDK_IncludePath);$(IncludePath);</IncludePath>
+    <IncludePath>$(ProjectDir)include;$(ProjectDir)GeneratedFiles;$(IIS-Common)version;$(IIS-Common)Include;$(WindowsSDK_IncludePath);$(IncludePath);</IncludePath>
     <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup>
@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="iiszlib.def" />
+    <None Include="iiszlib_msg.mc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <Target Name="EnsureImportsExist" BeforeTargets="PrepareForBuild">
@@ -87,4 +88,12 @@
   </Target>
   <Import Project="$(UserProfile)\.nuget\packages\MicroBuild.Core\$(MicroBuildVersion)\build\MicroBuild.Core.targets" Condition="Exists('$(UserProfile)\.nuget\packages\MicroBuild.Core\$(MicroBuildVersion)\build\MicroBuild.Core.targets')" />
   <Import Project="$(IIS-Common)build\copy-outputs.targets" Condition="Exists('$(IIS-Common)build\copy-outputs.targets')" />
+  <Target Name="GenerateIISZlibMsgResource" AfterTargets="PrepareForBuild">
+    <Message Text="Generating iiszlib_msg.h and iiszlib_msg.rc via the mc.exe util">
+    </Message>
+    <Exec Condition="!Exists('$(ProjectDir)GeneratedFiles')" Command="mkdir $(ProjectDir)GeneratedFiles">
+    </Exec>
+    <Exec Command="mc.exe $(ProjectDir)iiszlib_msg.mc -h $(ProjectDir)GeneratedFiles -r $(ProjectDir)GeneratedFiles">
+    </Exec>
+  </Target>
 </Project>

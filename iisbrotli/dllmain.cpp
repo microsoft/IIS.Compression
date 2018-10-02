@@ -5,7 +5,9 @@
 
 DECLARE_DEBUG_PRINT_OBJECT2("iisbrotli", DEBUG_FLAGS_ERROR);
 
-INT g_intEncoderOp  = BROTLI_PARAMETER_UNSET;
+INT g_intEncoderOp = BROTLI_PARAMETER_UNSET;
+HANDLE g_hEventLog = NULL;
+BOOL g_fEventRaised = FALSE;
 
 VOID LoadGlobalConfiguration(VOID);
 

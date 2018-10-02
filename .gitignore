@@ -50,3 +50,6 @@ korebuild-lock.txt
 *.ipdb
 *.res
 **/RC*
+
+# Generated files
+GeneratedFiles

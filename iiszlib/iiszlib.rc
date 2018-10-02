@@ -11,3 +11,4 @@
 #define RC_VERSION_LEGAL_COPYRIGHT      "Copyright \251 2018 Microsoft Corporation\0"
 
 #include <bldver.rc>
+#include "./GeneratedFiles/iiszlib_msg.rc"
