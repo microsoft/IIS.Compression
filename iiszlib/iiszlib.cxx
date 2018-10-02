@@ -221,7 +221,7 @@ Compress(
     // so only the upper bound needs to be checked.
     if (compression_level > Z_BEST_COMPRESSION)
     {
-        hr = ReportCompressionLevelOutOfBounds(compression_level, Z_BEST_COMPRESSION);
+        ReportCompressionLevelOutOfBounds(compression_level, Z_BEST_COMPRESSION);
         // Ignore any failure from event reporting
         hr = E_INVALIDARG;
         goto Finished;
@@ -335,7 +335,7 @@ Compress2(
     // so only the upper bound needs to be checked.
     if (compression_level > Z_BEST_COMPRESSION)
     {
-        hr = ReportCompressionLevelOutOfBounds(compression_level, Z_BEST_COMPRESSION);
+        ReportCompressionLevelOutOfBounds(compression_level, Z_BEST_COMPRESSION);
         // Ignore any failure from event reporting
         hr = E_INVALIDARG;
         goto Finished;

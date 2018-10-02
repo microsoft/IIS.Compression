@@ -157,7 +157,7 @@ Compress(
     // so only the upper bound needs to be checked.
     if (compression_level > BROTLI_MAX_QUALITY)
     {
-        hr = ReportCompressionLevelOutOfBounds(compression_level, BROTLI_MAX_QUALITY);
+        ReportCompressionLevelOutOfBounds(compression_level, BROTLI_MAX_QUALITY);
         // Ignore any failure from event reporting
         hr = E_INVALIDARG;
         goto Finished;
@@ -284,7 +284,7 @@ Compress2(
     // so only the upper bound needs to be checked.
     if (compression_level > BROTLI_MAX_QUALITY)
     {
-        hr = ReportCompressionLevelOutOfBounds(compression_level, BROTLI_MAX_QUALITY);
+        ReportCompressionLevelOutOfBounds(compression_level, BROTLI_MAX_QUALITY);
         // Ignore any failure from event reporting
         hr = E_INVALIDARG;
         goto Finished;
