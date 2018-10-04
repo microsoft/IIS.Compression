@@ -30,7 +30,7 @@ InitCompression(
 )
 {
     g_hEventLog = RegisterEventSource(NULL,
-                                      L"IIS Brotli");
+                                      IISBROTLI_EVENT_SOURCE_NAME);
 
     // Ignore the failure from RegisterEventSource
     return S_OK;

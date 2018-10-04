@@ -51,7 +51,7 @@ InitCompression(
 )
 {
     g_hEventLog = RegisterEventSource(NULL,
-                                      L"IIS Zlib");
+                                      IISZLIB_EVENT_SOURCE_NAME);
 
     // Ignore the failure from RegisterEventSource
     return S_OK;
