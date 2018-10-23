@@ -19,7 +19,8 @@ steps:
 - task: NuGetCommand@2
   displayName: 'NuGet restore'
   inputs:
-    restoreSolution: '**\*.sln;-:**\DotZLib.sln' # known bad solution
+    command: 'restore'
+    restoreSolution: '**\*.sln;!**\DotZLib.sln' # known bad solution
 
 - task: VSBuild@1
   displayName: 'Build x86'
