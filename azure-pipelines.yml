@@ -13,25 +13,25 @@ steps:
 
 - task: NuGetToolInstaller@0
   inputs:
-    versionSpec: '>1.0' 
-    checkLatest: true # Optional
+    versionSpec: '>=4.7.1' 
+    checkLatest: false # Optional
     
 - task: NuGetCommand@2
   displayName: 'NuGet restore'
   inputs:
     command: 'restore'
-    restoreSolution: '**\*.sln;!**\DotZLib.sln;!**\zlibvc.sln' # known bad solution
+    restoreSolution: '*.sln'
 
 - task: VSBuild@1
   displayName: 'Build x86'
   inputs:
-    solution: '**\*.sln'
+    solution: '*.sln'
     platform: x86
     configuration: 'release'
 
 - task: VSBuild@1
   displayName: 'Build x64'
   inputs:
-    solution: '**\*.sln'
+    solution: '*.sln'
     platform: x64
     configuration: 'release'
