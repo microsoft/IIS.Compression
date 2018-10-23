@@ -11,6 +11,11 @@ steps:
   clean: false
   submodules: recursive  # set to 'true' for a single level of submodules or 'recursive' to get submodules of submodules
 
+- task: NuGetToolInstaller@0
+  inputs:
+    versionSpec: '>1.0' 
+    checkLatest: true # Optional
+    
 - task: NuGetCommand@2
   displayName: 'NuGet restore'
   inputs:
