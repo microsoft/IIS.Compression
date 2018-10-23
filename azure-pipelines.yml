@@ -1,0 +1,30 @@
+resources:
+- repo: self
+
+queue:
+  name: Hosted VS2017
+  demands: 
+  - msbuild
+  - visualstudio
+  - vstest
+
+steps:
+
+- task: NuGetCommand@2
+  displayName: 'NuGet restore'
+  inputs:
+    restoreSolution: '**\*.sln'
+
+- task: VSBuild@1
+  displayName: 'Build x86'
+  inputs:
+    solution: '**\*.sln'
+    platform: x86
+    configuration: 'release'
+
+- task: VSBuild@1
+  displayName: 'Build x64'
+  inputs:
+    solution: '**\*.sln'
+    platform: x64
+    configuration: 'release'
