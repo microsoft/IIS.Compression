@@ -1,8 +1,8 @@
 resources:
   repositories:
-    - repository: IISCommon
+    - repository: Microsoft/IIS.Common
       type: github
       name: Microsoft/IIS.Common
 
 jobs:
-- template: azure-pipelines.yml@IISCommon  # Template reference
+- template: azure-pipelines.yml@Microsoft/IIS.Common  # Template reference
