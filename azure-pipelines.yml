@@ -1,37 +1,8 @@
-pool:
-  name: 'Hosted VS2017'  # name of the pool to run this job in
-  demands: 
-    - msbuild
-    - visualstudio
-    - vstest
+resources:
+  repositories:
+    - repository: IISCommon
+      type: github
+      name: Microsoft/IIS.Common
 
-steps:
-
-- checkout: self  
-  clean: false
-  submodules: recursive  # set to 'true' for a single level of submodules or 'recursive' to get submodules of submodules
-
-- task: NuGetToolInstaller@0
-  inputs:
-    versionSpec: '>=4.7.1' 
-    checkLatest: false # Optional
-    
-- task: NuGetCommand@2
-  displayName: 'NuGet restore'
-  inputs:
-    command: 'restore'
-    restoreSolution: '*.sln'
-
-- task: VSBuild@1
-  displayName: 'Build x86'
-  inputs:
-    solution: '*.sln'
-    platform: x86
-    configuration: 'release'
-
-- task: VSBuild@1
-  displayName: 'Build x64'
-  inputs:
-    solution: '*.sln'
-    platform: x64
-    configuration: 'release'
+jobs:
+- template: azure-pipelines.yml@IISCommon  # Template reference
