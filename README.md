@@ -1,4 +1,4 @@
-[![Build Status](https://devdiv.visualstudio.com/DevDiv/_apis/build/status/IIS/IIS.Compression/IIS.Compression%20PR%20&%20CI%20(Yaml))](https://devdiv.visualstudio.com/DevDiv/_build/latest?definitionId=10233)
+[![Build Status](https://devdiv.visualstudio.com/DevDiv/_apis/build/status/IIS/IIS.Compression/IIS.Compression%20CI%20(Yaml))](https://devdiv.visualstudio.com/DevDiv/_build/latest?definitionId=10233)
 
 Microsoft IIS Compression
 --------------------------------
