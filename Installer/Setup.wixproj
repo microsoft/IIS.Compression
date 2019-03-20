@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" InitialTargets="EnsureWixToolsetInstalled" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(ProjectDir)..\build\submodule.props" Condition="Exists('$(ProjectDir)..\build\submodule.props')" />
+  <Import Project="$(IIS-Common)build\settings.props" Condition="Exists('$(IIS-Common)build\settings.props')" />
+  <Import Project="$(IIS-Common)build\versions.props" Condition="Exists('$(IIS-Common)build\versions.props')" />
+  <Import Project="$(IIS-Setup)build\wix-versions.props" Condition="Exists('$(IIS-Setup)build\wix-versions.props')" />
+  <Import Project="$(IIS-Common)build\sign.props" Condition="Exists('$(IIS-Common)build\sign.props')" />
+  <PropertyGroup>
+    <ProductVersion>3.10</ProductVersion>
+    <ProjectGuid>1ABF68C6-4E3D-4C36-AB9E-3AD64F9FD744</ProjectGuid>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputType>Package</OutputType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <OutputName>iiscompression_x86</OutputName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x64' ">
+    <OutputName>iiscompression_amd64</OutputName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(SignType)' != '' ">
+    <SignOutput>True</SignOutput>
+  </PropertyGroup>
+  <PropertyGroup>
+    <WixVariables>Platform=($Platform);$(WixVariables);</WixVariables>
+    <OutputPath>$(SolutionDir)bin\$(Configuration)\$(Platform)\</OutputPath>
+    <OutDir>$(OutputPath)</OutDir>
+    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DefineConstants>Debug;$(DefineConstants)</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="iiscompression.wxs" />
+    <Compile Include="$(IIS-Setup)iisca\wix3\iisca.wxs">
+      <Link>iisca.wxs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bitmaps" />
+    <Folder Include="license" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bitmaps\bannrbmp.bmp" />
+    <Content Include="bitmaps\iiscompression.ico" />
+    <Content Include="bitmaps\dlgbmp.bmp" />
+    <Content Include="include.wxi" />
+    <Content Include="license\License.rtf" />
+    <Content Include="readme.htm" />
+    <Content Include="ThirdPartyNotices.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="WixUIExtension">
+      <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
+      <Name>WixUIExtension</Name>
+    </WixExtension>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(IIS-Setup)iisca\wix\setupstrings.wxl">
+      <Link>setupstrings.wxl</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="$(ProjectDir)..\CustomAction\iiscompressionCA.vcxproj">
+      <Name>iiscompressionCA</Name>
+      <Project>{4098a5fb-d3d2-4db1-9f37-bae0e08f80f2}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />
+  <Target Name="EnsureWixToolsetInstalled" Condition=" '$(WixTargetsImported)' != 'true' ">
+    <Error Text="The WiX Toolset v3.11 (or newer) build tools must be installed to build this project. To download the WiX Toolset, see http://wixtoolset.org/releases/" />
+  </Target>
+  <Target Name="BeforeBuild">
+    <CreateProperty Condition="$(IIS-Setup) != ''" Value="IIS-Setup=$(IIS-Setup);$(DefineConstants)">
+      <Output TaskParameter="Value" PropertyName="DefineConstants" />
+    </CreateProperty>
+  </Target>
+  <Target Name="EnsureImportsExist" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project is trying to import a missing file: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(ProjectDir)..\build\submodule.props')" Text="$([System.String]::Format('$(ErrorText)', '$(ProjectDir)..\build\submodule.props'))" />
+    <Error Condition="!Exists('$(IIS-Common)build\settings.props')" Text="$([System.String]::Format('$(ErrorText)', '$(IIS-Common)build\settings.props'))" />
+    <Error Condition="!Exists('$(IIS-Common)build\versions.props')" Text="$([System.String]::Format('$(ErrorText)', '$(IIS-Common)build\versions.props'))" />
+    <Error Condition="!Exists('$(IIS-Setup)build\wix-versions.props')" Text="$([System.String]::Format('$(ErrorText)', '$(IIS-Setup)build\wix-versions.props'))" />
+    <Error Condition="!Exists('$(IIS-Common)build\sign.props')" Text="$([System.String]::Format('$(ErrorText)', '$(IIS-Common)build\sign.props'))" />
+    <Error Condition="!Exists('$(UserProfile)\.nuget\packages\MicroBuild.Core\$(MicroBuildVersion)\build\MicroBuild.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(UserProfile)\.nuget\packages\MicroBuild.Core\$(MicroBuildVersion)\build\MicroBuild.Core.targets'))" />
+  </Target>
+  <Import Project="$(UserProfile)\.nuget\packages\MicroBuild.Core\$(MicroBuildVersion)\build\MicroBuild.Core.targets" Condition="Exists('$(UserProfile)\.nuget\packages\MicroBuild.Core\$(MicroBuildVersion)\build\MicroBuild.Core.targets')" />
+</Project>

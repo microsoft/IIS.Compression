@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+    IIS zlib and brotli Compression schemes setup
+-->
+
+<?define Codepage = "1252" ?>
+<?include include.wxi ?>
+
+<?define IisCompressionRoot=..\ ?>
+<?define ProductCode="*" ?>
+<?define UpgradeCode="AE9D426D-FAFB-4A57-953F-75A6B765936A" ?>
+
+<!-- Version number -->
+<?define Version = "1.0" ?>
+<?define MsiVersion = "$(var.Version).$(var.BLDNUMMAJOR)" ?>
+<?define ProductShortName="IIS Compression" ?>
+<?define IISZlibCompressionScheme="IISZlib" ?>
+<?define IISBrotliCompressionScheme="IISBrotli" ?>
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Product Id="$(var.ProductCode)"
+             Name="!(loc.IisCompressionProductName)"
+             Manufacturer="!(loc.Manufacturer)"
+             Version="$(var.MsiVersion)"
+             Language="!(loc.Language)"
+             Codepage="$(var.Codepage)"
+             UpgradeCode="$(var.UpgradeCode)" >
+
+    <Package Id="*"
+             Description="!(loc.IisCompressionProductName)"
+             Manufacturer="!(loc.Manufacturer)"
+             Compressed="yes"
+             InstallPrivileges="elevated"
+             InstallerVersion="400"
+             Platform="$(var.PlatformValue)" />
+
+    <Media Id="1" Cabinet="iiscompression.cab" EmbedCab="yes" CompressionLevel="high"/>
+
+    <WixVariable Id="WixUILicenseRtf" Value=".\license\license.rtf" />
+    
+    <!-- include the standard app searches -->
+    <?include $(var.IisCompressionRoot)IIS-Setup\appsearch\appsearch.wxi ?>
+
+    <!-- make patching UI go from welcome to ready to repair -->
+    <?include $(var.IisCompressionRoot)IIS-Setup\iisca\wix3\FixPatchingBehavior.wxi ?>
+
+    <!-- Properties that show up under Control Panel\Programs and Features\More Columns -->
+    <Property Id="ARPCONTACT">Microsoft Corporation</Property>
+    <Property Id="ARPPRODUCTICON" Value="iiscompression.ico" />
+    <Icon Id="iiscompression.ico" SourceFile="Bitmaps\iiscompression.ico" />
+
+    <Upgrade Id="$(var.UpgradeCode)">
+      <UpgradeVersion OnlyDetect="no" Property="OLDERVERSIONFOUND" Maximum="$(var.MsiVersion)" IncludeMaximum="no" MigrateFeatures="yes" />
+      <UpgradeVersion OnlyDetect="yes" Property="DUPLICATEVERSIONFOUND" Minimum="$(var.MsiVersion)" Maximum="$(var.MsiVersion)" IncludeMinimum="yes" IncludeMaximum="yes" />
+      <UpgradeVersion OnlyDetect="yes" Property="NEWERVERSIONFOUND" Minimum="$(var.MsiVersion)" IncludeMinimum="no" />
+    </Upgrade>
+
+    <Condition Message="!(loc.DuplicateVersionFound)">
+      (NOT DUPLICATEVERSIONFOUND) OR Installed
+    </Condition>
+
+    <Condition Message="!(loc.NewerVersionFound)">
+      (NOT NEWERVERSIONFOUND) OR Installed
+    </Condition>
+
+    <!-- Require the user be an admin to install -->
+    <Condition Message="!(loc.AdminRequired)">Privileged</Condition>
+
+    <!-- Prevent install of 32 bit product on 64 bit machine -->
+    <?if $(var.Platform) = "x86" ?>
+    <Condition Message="!(loc.LaunchCondition_64BIT)">
+      <![CDATA[Installed Or NOT VersionNT64]]>
+    </Condition>
+    <?endif ?>
+
+    <!-- Per machine only if administrator, per user if no administrator -->
+    <Property Id="ALLUSERS">2</Property>
+
+    <!-- Detect IIS version and require 7.5 -->
+    <Condition Message="!(loc.IIS75OrGreater)">
+      <![CDATA[Installed OR (VersionNT >= 601)]]>
+    </Condition>
+
+    <!-- Require core web server and w3svc -->
+    <Condition Message="!(loc.CoreWebW3SVC)">
+      ((IISCOREWEBENGINEINSTALLED = "#1") AND (IISW3SVCINSTALLED = "#1")) OR Installed
+    </Condition>
+
+    <!-- Directory Structure and Component Definitions -->
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+
+      <!-- Platform specific core module -->
+
+      <Directory Id="$(var.ProgramFilesFolder)">
+        <Directory Id="IISModuleDirectory" Name="IIS">
+          <Directory Id="INSTALLLOCATION" ShortName="IISComp" Name="IIS Compression">
+            <Component Id="IisZlib" Guid="B60CA37C-79E9-4ECF-BDF2-1EA3504D3A83" Win64="$(var.IsWin64)">
+              <File Id="IisZlibDll"
+                    Name="iiszlib.dll"
+                    Source="$(var.IisCompressionRoot)target\$(var.Configuration)\$(var.Platform)\iiszlib.dll"
+                    DiskId="1"
+                    Vital="yes"
+                    KeyPath="yes" />
+              <RegistryKey Root="HKLM" Key="SYSTEM\CurrentControlSet\Services\EventLog\Application\$(var.IISZlibCompressionScheme)">
+                <RegistryValue Name="EventMessageFile" Type="expandable" Value="[#IisZlibDll]"/>
+                <RegistryValue Name="TypesSupported" Type="integer" Value="7"/>
+              </RegistryKey>
+            </Component>
+            <Component Id="IisBrotli" Guid="3C2A0748-058E-46DB-B8C8-F1FF3BFB4C42" Win64="$(var.IsWin64)">
+              <File Id="IisBrotliDll"
+                    Name="iisbrotli.dll"
+                    Source="$(var.IisCompressionRoot)target\$(var.Configuration)\$(var.Platform)\iisbrotli.dll"
+                    DiskId="1"
+                    Vital="yes" />
+              <RegistryKey Root="HKLM" Key="SYSTEM\CurrentControlSet\Services\EventLog\Application\$(var.IISBrotliCompressionScheme)">
+                <RegistryValue Name="EventMessageFile" Type="expandable" Value="[#IisBrotliDll]"/>
+                <RegistryValue Name="TypesSupported" Type="integer" Value="7"/>
+              </RegistryKey>
+            </Component>
+            <Component Id="License" Guid="399719BA-8F33-4B40-8B24-290946BA18D7" Win64="$(var.IsWin64)">
+              <File Id="LicenseFile"
+                    ShortName="license.rtf"
+                    Name="iiscompression_license.rtf"
+                    Source=".\license\license.rtf"
+                    DiskId="1"
+                    Vital="yes"/>
+            </Component>
+            <Component Id="ThirdPartyNotices" Guid="D1CCF0C2-F183-4B17-A3BB-B0C3BF8B09F5" Win64="$(var.IsWin64)">
+              <File Id="ThirdPartyNoticesFile"
+                    ShortName="TPN.txt"
+                    Name="iiscompression_ThirdPartyNotices.txt"
+                    Source=".\ThirdPartyNotices.txt"
+                    DiskId="1"
+                    Vital="yes"/>
+            </Component>
+            <Component Id="Readme" Guid="4024AAD1-6345-4F0D-B434-953B779825C0" Win64="$(var.IsWin64)">
+              <File Id="ReadmeFile"
+                    ShortName="readme.htm"
+                    Name="iiscompression_readme.htm"
+                    Source=".\readme.htm"
+                    DiskId="1"
+                    Vital="yes"/>
+            </Component>
+          </Directory>
+        </Directory>
+      </Directory>
+
+      <!-- Discoverability-->
+
+      <Component Id="DiscoverabilityKey" Guid="18765706-E98E-43EF-8F02-0F877679CF75" Win64="$(var.IsWin64)">
+        <RegistryKey Root="HKLM" Key="$(var.DiscoverabilityKeyRoot)\$(var.ProductShortName)">
+          <RegistryKey Key="$(var.IISZlibCompressionScheme)">
+            <RegistryValue Type="integer" Name="Install" Value="1" />
+            <RegistryValue Type="string" Name="Version" Value="$(var.MsiVersion)" />
+          </RegistryKey>
+          <RegistryKey Key="$(var.IISBrotliCompressionScheme)">
+            <RegistryValue Type="integer" Name="Install" Value="1" />
+            <RegistryValue Type="string" Name="Version" Value="$(var.MsiVersion)" />
+          </RegistryKey>
+        </RegistryKey>
+      </Component>
+
+      <!-- WOW64 Support -->
+
+      <?if $(var.Platform) = "x64" ?>
+
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="IISModuleDirectory32" Name="IIS">
+          <Directory Id="INSTALLLOCATION32" ShortName="IISComp" Name="IIS Compression" SourceName="WowOnly">
+            <Component Id="IisZlib32" Guid="FBDB630C-D614-4523-910E-257E41E5F83D" Win64="no">
+              <File Id="IisZlibDll32"
+                    Name="iiszlib.dll"
+                    Source="$(var.IisCompressionRoot)target\$(var.Configuration)\x86\iiszlib.dll"
+                    DiskId="1"
+                    Vital="yes" />
+            </Component>
+            <Component Id="IisBrotli32" Guid="72A086DB-7D00-466D-81A1-84D07388E023" Win64="no">
+              <File Id="IisBrotliDll32"
+                    Name="iisbrotli.dll"
+                    Source="$(var.IisCompressionRoot)target\$(var.Configuration)\x86\iisbrotli.dll"
+                    DiskId="1"
+                    Vital="yes" />
+            </Component>
+          </Directory>
+        </Directory>
+      </Directory>
+
+      <!-- Discoverability WOW64 -->
+
+      <Component Id="DiscoverabilityKeyWow" Guid="1E9CDB5F-1E85-4F6D-8243-BFA63A5F71B9" Win64="no">
+        <RegistryKey Root="HKLM" Key="$(var.DiscoverabilityKeyRoot)\$(var.ProductShortName)">
+          <RegistryKey Key="$(var.IISZlibCompressionScheme)">
+            <RegistryValue Type="integer" Name="Install" Value="1" />
+            <RegistryValue Type="string" Name="Version" Value="$(var.MsiVersion)" />
+          </RegistryKey>
+          <RegistryKey Key="$(var.IISBrotliCompressionScheme)">
+            <RegistryValue Type="integer" Name="Install" Value="1" />
+            <RegistryValue Type="string" Name="Version" Value="$(var.MsiVersion)" />
+          </RegistryKey>
+        </RegistryKey>
+      </Component>
+
+      <?endif ?>
+
+    </Directory>
+
+    <!-- Feature Definition -->
+
+    <Feature Id="IisCompressionFeature" Title="!(loc.IisCompressionTitle)" Description="!(loc.IisCompressionDescription)" Level="1">
+      <ComponentRef Id="IisZlib"/>
+      <ComponentRef Id="IisBrotli"/>
+      <ComponentRef Id="License"/>
+      <ComponentRef Id="ThirdPartyNotices"/>
+      <ComponentRef Id="Readme"/>
+      <ComponentRef Id="DiscoverabilityKey"/>
+      <?if $(var.Platform)= "x64" ?>
+      <ComponentRef Id="IisZlib32"/>
+      <ComponentRef Id="IisBrotli32"/>
+      <ComponentRef Id="DiscoverabilityKeyWow"/>
+      <?endif ?>
+    </Feature>
+
+    <!-- User Interface -->
+
+    <UIRef Id="WixUI_Minimal"/>
+    <UIRef Id="WixUI_ErrorProgressText"/>
+
+    <UI>
+      <DialogRef Id="WelcomeEulaDlg"/>
+
+      <!--Custom errors specific to shared configuration detection -->
+      <Error Id="30001">!(loc.Error30001)</Error>
+      <Error Id="30002">!(loc.Error30002)</Error>
+      <!-- Require WAS and WMSVC be stopped to avoid restarts -->
+      <Error Id="30003">!(loc.WebServicesRunning)</Error>
+    </UI>
+
+    <!-- Specific custom actions for this project. -->
+
+    <CustomAction BinaryKey="IISCustomActionDll"
+                  Id="RegisterCompressionSchemes"
+                  DllEntry="RegisterCompressionSchemesCA"
+                  Execute="deferred"
+                  Return="check"
+                  Impersonate="no"/>
+
+    <CustomAction BinaryKey="IISCustomActionDll"
+                  Id="CleanupCompressionSchemes"
+                  DllEntry="CleanupCompressionSchemesCA"
+                  Execute="deferred"
+                  Return="check"
+                  Impersonate="no"/>
+
+    <InstallExecuteSequence>
+      <AppSearch Before="LaunchConditions" />
+      <Custom Action="RegisterCompressionSchemes" After="InstallFiles">NOT Installed</Custom>
+      <Custom Action="CleanupCompressionSchemes" Before="RemoveFiles">(NOT UPGRADINGPRODUCTCODE) AND (REMOVE="ALL")</Custom>
+      <LaunchConditions After="FindRelatedProducts" />
+      <MigrateFeatureStates />
+      <RemoveExistingProducts After="InstallFinalize"/>
+    </InstallExecuteSequence>
+  </Product>
+
+  <Fragment>
+    <!-- Reference Output by project name -->
+    <Binary Id="IISCustomActionDll" SourceFile="$(var.iiscompressionCA.TargetPath)"/>
+  </Fragment>
+</Wix>

@@ -1,0 +1,6 @@
+#define VER_FILETYPE                    VFT_DLL
+#define RC_VERSION_INTERNAL_NAME        "iiscompressionCA\0"
+#define RC_VERSION_ORIGINAL_FILE_NAME   "iiscompressionCA.dll\0"
+#define RC_VERSION_FILE_DESCRIPTION     "IIS Compression Schemes Custom Action DLL\0"
+
+#include <bldver.rc>
