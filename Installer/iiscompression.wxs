@@ -99,7 +99,7 @@
             <Component Id="IisZlib" Guid="B60CA37C-79E9-4ECF-BDF2-1EA3504D3A83" Win64="$(var.IsWin64)">
               <File Id="IisZlibDll"
                     Name="iiszlib.dll"
-                    Source="$(var.IisCompressionRoot)target\$(var.Configuration)\$(var.Platform)\iiszlib.dll"
+                    Source="$(var.IisCompressionRoot)bin\$(var.Configuration)\$(var.Platform)\iiszlib.dll"
                     DiskId="1"
                     Vital="yes"
                     KeyPath="yes" />
@@ -111,7 +111,7 @@
             <Component Id="IisBrotli" Guid="3C2A0748-058E-46DB-B8C8-F1FF3BFB4C42" Win64="$(var.IsWin64)">
               <File Id="IisBrotliDll"
                     Name="iisbrotli.dll"
-                    Source="$(var.IisCompressionRoot)target\$(var.Configuration)\$(var.Platform)\iisbrotli.dll"
+                    Source="$(var.IisCompressionRoot)bin\$(var.Configuration)\$(var.Platform)\iisbrotli.dll"
                     DiskId="1"
                     Vital="yes" />
               <RegistryKey Root="HKLM" Key="SYSTEM\CurrentControlSet\Services\EventLog\Application\$(var.IISBrotliCompressionScheme)">
@@ -172,14 +172,14 @@
             <Component Id="IisZlib32" Guid="FBDB630C-D614-4523-910E-257E41E5F83D" Win64="no">
               <File Id="IisZlibDll32"
                     Name="iiszlib.dll"
-                    Source="$(var.IisCompressionRoot)target\$(var.Configuration)\x86\iiszlib.dll"
+                    Source="$(var.IisCompressionRoot)bin\$(var.Configuration)\x86\iiszlib.dll"
                     DiskId="1"
                     Vital="yes" />
             </Component>
             <Component Id="IisBrotli32" Guid="72A086DB-7D00-466D-81A1-84D07388E023" Win64="no">
               <File Id="IisBrotliDll32"
                     Name="iisbrotli.dll"
-                    Source="$(var.IisCompressionRoot)target\$(var.Configuration)\x86\iisbrotli.dll"
+                    Source="$(var.IisCompressionRoot)bin\$(var.Configuration)\x86\iisbrotli.dll"
                     DiskId="1"
                     Vital="yes" />
             </Component>
