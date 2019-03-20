@@ -1,22 +1,5 @@
-/*++
-
-Module Name:
-
-    avoid_restart.cpp
-
-Abstract:
-
-    Detects if some services and running and if a QFE is installed.
-    If that is true, we display a message that says that we cannot install
-    until user stop the services.
-
-Author:
-
-    Daniel Vasquez Lopez (danielvl)     13-Jan-2009
-
-Revision History:
-
---*/
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT license.
 
 #include <precomp.h>
 #include <Wbemidl.h>
