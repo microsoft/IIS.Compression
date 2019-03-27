@@ -44,6 +44,7 @@
   <ItemGroup>
     <None Include="iisbrotli.def" />
     <None Include="iisbrotli_msg.mc" />
+    <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CA3EFC47-0ABB-45AD-B672-F1D6066BF62A}</ProjectGuid>
@@ -88,9 +89,9 @@
     <Error Condition="!Exists('$(IIS-Common)build\settings.props')" Text="$([System.String]::Format('$(ErrorText)', '$(IIS-Common)build\settings.props'))" />
     <Error Condition="!Exists('$(IIS-Common)build\sign.props')" Text="$([System.String]::Format('$(ErrorText)', '$(IIS-Common)build\sign.props'))" />
     <Error Condition="!Exists('$(IIS-Common)build\copy-outputs.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(IIS-Common)build\copy-outputs.targets'))" />
-    <Error Condition="!Exists('$(UserProfile)\.nuget\packages\MicroBuild.Core\$(MicroBuildVersion)\build\MicroBuild.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(UserProfile)\.nuget\packages\MicroBuild.Core\$(MicroBuildVersion)\build\MicroBuild.Core.targets'))" />
+    <Error Condition="!Exists('$(UserProfile)\.nuget\packages\microsoft.visualstudioeng.microbuild.core\$(MicroBuildVersion)\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(UserProfile)\.nuget\packages\microsoft.visualstudioeng.microbuild.core\$(MicroBuildVersion)\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets'))" />
   </Target>
-  <Import Project="$(UserProfile)\.nuget\packages\MicroBuild.Core\$(MicroBuildVersion)\build\MicroBuild.Core.targets" Condition="Exists('$(UserProfile)\.nuget\packages\MicroBuild.Core\$(MicroBuildVersion)\build\MicroBuild.Core.targets')" />
+  <Import Project="$(UserProfile)\.nuget\packages\microsoft.visualstudioeng.microbuild.core\$(MicroBuildVersion)\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets" Condition="Exists('$(UserProfile)\.nuget\packages\microsoft.visualstudioeng.microbuild.core\$(MicroBuildVersion)\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets')" />
   <Import Project="$(IIS-Common)build\copy-outputs.targets" Condition="Exists('$(IIS-Common)build\copy-outputs.targets')" />
   <Target Name="GenerateIISBrotliMsgResource" AfterTargets="PrepareForBuild">
     <Message Text="Generating iisbrotli_msg.h and iisbrotli_msg.rc via the mc.exe util">
