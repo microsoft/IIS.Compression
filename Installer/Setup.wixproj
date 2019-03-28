@@ -43,7 +43,7 @@
     <Content Include="bitmaps\bannrbmp.bmp" />
     <Content Include="bitmaps\iiscompression.ico" />
     <Content Include="bitmaps\dlgbmp.bmp" />
-    <Content Include="include.wxi" />
+    <Content Include="..\IIS-Setup\include.wxi" />
     <Content Include="license\License.rtf" />
     <Content Include="packages.config" />
     <Content Include="readme.htm" />

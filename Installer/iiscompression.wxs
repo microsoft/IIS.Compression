@@ -5,8 +5,6 @@
 -->
 
 <?define Codepage = "1252" ?>
-<?include include.wxi ?>
-
 <?define IisCompressionRoot=..\ ?>
 <?define ProductCode="*" ?>
 <?define UpgradeCode="AE9D426D-FAFB-4A57-953F-75A6B765936A" ?>
@@ -17,6 +15,8 @@
 <?define ProductShortName="IIS Compression" ?>
 <?define IISZlibCompressionScheme="IISZlib" ?>
 <?define IISBrotliCompressionScheme="IISBrotli" ?>
+
+<?include $(var.IisCompressionRoot)IIS-Setup\include.wxi ?>
 
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
     <Product Id="$(var.ProductCode)"
