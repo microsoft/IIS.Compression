@@ -25,15 +25,13 @@
     <OutputPath>$(SolutionDir)bin\$(Configuration)\$(Platform)\</OutputPath>
     <OutDir>$(OutputPath)</OutDir>
     <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+    <IncludeSearchPaths>$(IncludeSearchPaths);$(IntermediateOutputPath);$(IIS-Setup)</IncludeSearchPaths>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DefineConstants>Debug;$(DefineConstants)</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="iiscompression.wxs" />
-    <Compile Include="$(IIS-Setup)iisca\wix3\iisca.wxs">
-      <Link>iisca.wxs</Link>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bitmaps" />
@@ -43,7 +41,6 @@
     <Content Include="bitmaps\bannrbmp.bmp" />
     <Content Include="bitmaps\iiscompression.ico" />
     <Content Include="bitmaps\dlgbmp.bmp" />
-    <Content Include="..\IIS-Setup\include.wxi" />
     <Content Include="license\License.rtf" />
     <Content Include="packages.config" />
     <Content Include="readme.htm" />
