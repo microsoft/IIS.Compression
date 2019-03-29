@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<head>
+<title>IIS Compression Readme</title>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style>
+BODY {
+	FONT-SIZE: 10pt;
+	COLOR: #000000;
+	FONT-FAMILY: verdana;
+	BACKGROUND-COLOR: #ffffff;
+}
+HR {
+	COLOR: #000000;
+	HEIGHT: 1px;
+}
+H1 {
+	FONT-SIZE: 16pt;
+	COLOR: #000000;
+}
+H2 {
+	FONT-SIZE: 15pt;
+}
+H3 {
+	FONT-SIZE: 14pt;
+}
+H4 {
+	FONT-SIZE: 13pt;
+}
+H5 {
+	FONT-SIZE: 12pt;
+}
+H6 {
+	FONT-SIZE: 11pt;
+}
+
+ol li{
+	margin-bottom: 5pt	
+}
+
+A:link {
+	COLOR: #000066;
+}
+A:visited {
+	COLOR: #000066;
+}
+A:hover {
+	COLOR: #660000;
+}
+A:active {
+	COLOR: #660000;
+}
+.style1 {
+	color: #000066;
+}
+</style>
+<meta content="MSHTML 6.00.6001.18023" name="GENERATOR">
+</head>
+
+<body>
+
+<h1>IIS Compression 1.0</h1>
+<h2>Readme</h2>
+<hr>
+<h4>Table of Contents</h4>
+<ul>
+    <li><a href="#Overview">Overview</a> </li>
+    <li><a href="#InstallationNotes">Installation Notes</a>
+        <ul>
+            <li><a href="#Troubleshooting">Troubleshooting Installation Issues</a></li>
+            <li><a href="#MoreInfo">For More Information </a></li>
+        </ul>
+    </li>
+</ul>
+<hr>
+<h3><a name="Overview">Overview</a></h3>
+<p>
+    <b>IIS Compression</b> is a bundle of two IIS compression scheme providers
+    <b>iisbrotli.dll</b> and <b>iiszlib.dll</b> that enable IIS to compress HTTP response contents.
+    <ul>
+        <li><b>iisbrotli.dll</b> supports Brotli compression.</li>
+        <li><b>iiszlib.dll</b> supports both Gzip and Deflate compression.</li>
+    </ul>
+</p>
+<p>
+    <b>IIS Compression</b> is an open-source project, and the source code is available on Github:
+    <a href="https://github.com/Microsoft/IIS.Compression">Microsoft/IIS.Compression</a>
+</p>
+<hr>
+<h3><a name="InstallationNotes">Installation Notes</a></h3>
+<p>
+    You will need to run the installation package as an administrator. This can be 
+    accomplished by one of the following methods:
+</p>
+<ul>
+    <li>
+        Logging in to your server using the actual account named &quot;Administrator&quot;.
+    </li>
+    <li>
+        Logging on using an account with administrator privileges and opening a 
+        command-prompt by right-clicking the <b>Command Prompt</b> menu item that is 
+        located in the <b>Accessories</b> menu for Windows programs and selecting 
+        &quot;Run as administrator&quot;, then typing the appropriate command listed below for 
+        your version of Windows to run the installation:
+        <blockquote>
+            <nobr><tt>msiexec /I &lt;msi_filename&gt;</tt></nobr>
+        </blockquote>
+    </li>
+</ul>
+<p>
+    The installer registers <b>iisbrotli.dll</b> as the br (Brotli) compression scheme provider
+    in applicationHost.config. It also replaces the default gzip compression scheme provider
+    <b>gzip.dll</b> with <b>iiszlib.dll</b>.
+</p>
+<hr>
+<h4><a name="Troubleshooting">Troubleshooting Installation Issues</a></h4>
+<p>
+    If you encounter any problem during installation, you can run appropriate 
+    command listed below for your version of Windows to create a log file that will 
+    contain information about the installation process:
+</p>
+<blockquote>
+    <nobr><tt>msiexec /L iiscompression_install.log /I &lt;msi_filename&gt;</tt></nobr>
+</blockquote>
+<p>
+    You can analyze this log file after a failed installation to help determine 
+    the cause of the failure.
+</p>
+<hr>
+<h4><a name="MoreInfo">For More Information</a></h4>
+<p>
+    Additional information on this extension are available on the
+    <a href="https://go.microsoft.com/fwlink/?linkid=873047">IIS Compression</a> section on 
+    <a href="https://www.iis.net/">IIS.net</a>.
+</p>
+<p>© 2017 Microsoft Corporation.</p>
+
+</body>
+
+</html>

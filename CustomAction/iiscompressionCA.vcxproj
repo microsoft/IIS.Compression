@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" InitialTargets="EnsureWixToolsetInstalled" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(ProjectDir)..\build\submodule.props" Condition="Exists('$(ProjectDir)..\build\submodule.props')" />
+  <Import Project="$(IIS-Common)build\versions.props" Condition="Exists('$(IIS-Common)build\versions.props')" />
+  <Import Project="$(IIS-Common)build\settings.props" Condition="Exists('$(IIS-Common)build\settings.props')" />
+  <Import Project="$(IIS-Common)build\sign.props" Condition="Exists('$(IIS-Common)build\sign.props')" />
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="avoid_restart.cpp" />
+    <ClCompile Include="iiscompressionCA.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="$(IIS-Common)lib\CommonLib.vcxproj">
+      <Project>{b54a8f61-60de-4ad9-87ca-d102f230678e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="$(IIS-Setup)iisca\lib\iisca.vcxproj">
+      <Project>{7324770c-0871-4d73-be3d-5e2f3e9e1b1e}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="iiscompressionCA.def" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="iiscompressionCA.rc">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IIS-Common)version;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IIS-Common)version;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IIS-Common)version;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IIS-Common)version;</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ResourceCompilePreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ResourceCompilePreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ResourceCompilePreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ResourceCompilePreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4098A5FB-D3D2-4DB1-9F37-BAE0E08F80F2}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>iiscompressionCA</RootNamespace>
+    <ProjectName>iiscompressionCA</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup>
+    <AdditionalIncludeDirectories>$(IIS-Common)version;$(IIS-Common)Include;$(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    <PrecompiledHeader>Create</PrecompiledHeader>
+    <PrecompiledHeaderFile>precomp.h</PrecompiledHeaderFile>
+    <PrecompiledHeaderOutputFile>$(IntDir)precomp.pch</PrecompiledHeaderOutputFile>
+    <OutDir>bin\$(Configuration)\$(PlatformTarget)\</OutDir>
+    <IntDir>obj\$(Configuration)\$(PlatformTarget)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(IIS-Setup)iisca\lib;$(WIX)sdk\$(WixPlatformToolset)\inc;$(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <WarningLevel>Level3</WarningLevel>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>httpapi.lib;shlwapi.lib;ahadmin.lib;xmllite.lib;msi.lib;dutil.lib;wcautil.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
+    <ClCompile>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;CUSTOMACTIONTEST_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Platform)'=='Win32'">
+    <Link>
+      <AdditionalLibraryDirectories>$(VC_ReferencesPath_x86);$(WindowsSDK_LibraryPath)\$(PlatformTarget);$(WIX)sdk\$(WixPlatformToolset)\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">DebugFull</GenerateDebugInformation>
+    </Link>
+    <ClCompile>
+      <SupportJustMyCode Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</SupportJustMyCode>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Platform)'=='x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SupportJustMyCode Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</SupportJustMyCode>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(VC_ReferencesPath_x64);$(WindowsSDK_LibraryPath)\$(PlatformTarget);$(WIX)sdk\$(WixPlatformToolset)\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <TargetMachine>Machinex64</TargetMachine>
+      <GenerateDebugInformation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">DebugFull</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <Import Project="$(WixNativeCATargetsPath)" Condition=" '$(WixNativeCATargetsPath)' != '' " />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.NativeCA.targets" Condition=" '$(WixNativeCATargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.NativeCA.targets') " />
+  <Target Name="EnsureWixToolsetInstalled" Condition=" '$(WixNativeCATargetsImported)' != 'true' ">
+    <Error Text="The WiX Toolset v3.11 (or newer) build tools must be installed to build this project. To download the WiX Toolset, see http://wixtoolset.org/releases/" />
+  </Target>
+  <Target Name="EnsureImportsExist" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project is trying to import a missing file: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(ProjectDir)..\build\submodule.props')" Text="$([System.String]::Format('$(ErrorText)', '$(ProjectDir)..\build\submodule.props'))" />
+    <Error Condition="!Exists('$(IIS-Common)build\versions.props')" Text="$([System.String]::Format('$(ErrorText)', '$(IIS-Common)build\versions.props'))" />
+    <Error Condition="!Exists('$(IIS-Common)build\settings.props')" Text="$([System.String]::Format('$(ErrorText)', '$(IIS-Common)build\settings.props'))" />
+    <Error Condition="!Exists('$(IIS-Common)build\sign.props')" Text="$([System.String]::Format('$(ErrorText)', '$(IIS-Common)build\sign.props'))" />
+    <Error Condition="!Exists('$(IIS-Common)build\copy-outputs.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(IIS-Common)build\copy-outputs.targets'))" />
+    <Error Condition="!Exists('$(UserProfile)\.nuget\packages\microsoft.visualstudioeng.microbuild.core\$(MicroBuildVersion)\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(UserProfile)\.nuget\packages\microsoft.visualstudioeng.microbuild.core\$(MicroBuildVersion)\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets'))" />
+  </Target>
+  <Import Project="$(UserProfile)\.nuget\packages\microsoft.visualstudioeng.microbuild.core\$(MicroBuildVersion)\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets" Condition="Exists('$(UserProfile)\.nuget\packages\microsoft.visualstudioeng.microbuild.core\$(MicroBuildVersion)\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets')" />
+  <Import Project="$(IIS-Common)build\copy-outputs.targets" Condition="Exists('$(IIS-Common)build\copy-outputs.targets')" />
+</Project>
