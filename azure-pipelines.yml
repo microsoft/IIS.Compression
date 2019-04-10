@@ -1,6 +1,6 @@
 resources:
   repositories:
-    - repository: bariscaglar/testrepo
+    - repository: MicrosoftIISCommon
       type: github
       name: Microsoft/IIS.Common
       endpoint: GitHub-IIS
