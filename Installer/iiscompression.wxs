@@ -27,13 +27,12 @@
              Codepage="$(var.Codepage)"
              UpgradeCode="$(var.UpgradeCode)" >
 
-    <Package Id="*"
-             Description="!(loc.IisCompressionProductName)"
-             Manufacturer="!(loc.Manufacturer)"
-             Compressed="yes"
-             InstallPrivileges="elevated"
-             InstallerVersion="400"
-             Platform="$(var.PlatformValue)" />
+      <Package Id="*"
+               Description="!(loc.IisCompressionProductName)"
+               Manufacturer="!(loc.Manufacturer)"
+               Compressed="yes"
+               InstallPrivileges="elevated"
+               InstallerVersion="400" />   
 
     <Media Id="1" Cabinet="iiscompression.cab" EmbedCab="yes" CompressionLevel="high"/>
 
@@ -139,7 +138,7 @@
               <File Id="ReadmeFile"
                     ShortName="readme.htm"
                     Name="iiscompression_readme.htm"
-                    Source=".\readme.htm"
+                    Source=".\readme.html"
                     DiskId="1"
                     Vital="yes"/>
             </Component>
