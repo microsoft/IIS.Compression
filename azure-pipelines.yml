@@ -6,4 +6,4 @@ resources:
       endpoint: GitHub-IIS
 
 jobs:
-- template: azure-pipelines.yml@Microsoft/IIS.Common  # Template reference
+- template: azure-pipelines.yml@MicrosoftIISCommon # Template reference
