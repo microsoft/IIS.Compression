@@ -138,7 +138,7 @@
               <File Id="ReadmeFile"
                     ShortName="readme.htm"
                     Name="iiscompression_readme.htm"
-                    Source=".\readme.html"
+                    Source=".\iiscompression_readme.htm"
                     DiskId="1"
                     Vital="yes"/>
             </Component>
