@@ -6,6 +6,7 @@ jobs:
     demands:
     - msbuild
     - visualstudio
+    - Team -equal IISAdmin
 
   variables:
     signType: test
