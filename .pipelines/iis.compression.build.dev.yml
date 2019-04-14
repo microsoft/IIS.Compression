@@ -1,7 +1,7 @@
 name: $(Rev:rr)
 
 jobs:
-- template: templates\build-template.yml
+- template: templates\build.yml
   parameters:
     agentPoolName: 'VSEng-MicroBuildV2CustomPool'
     agentPoolDemandTeam: 'IISAdmin'
