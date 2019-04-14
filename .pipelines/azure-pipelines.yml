@@ -1,3 +1,5 @@
+name: $(Rev:rr)
+
 jobs:
 - job: build
 
@@ -7,8 +9,6 @@ jobs:
     - msbuild
     - visualstudio
     - Team -equals IISAdmin
-
-  name: $(Rev:rr)
 
   variables:
     solution: '**\Compression.sln'
