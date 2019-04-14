@@ -8,6 +8,8 @@ jobs:
     - visualstudio
     - Team -equals IISAdmin
 
+  name: $(Rev:rr)
+
   variables:
     solution: '**\Compression.sln'
     TeamName: 'IIS'
@@ -17,7 +19,6 @@ jobs:
     buildConfiguration: 'Release'
     productMajor: 1
     productMinor: 0
-    buildMajor: 0
     publishInstaller: 'true'
 
   steps:
@@ -51,7 +52,7 @@ jobs:
     inputs:
       solution: '$(solution)'
       vsVersion: 15.0
-      msbuildArgs: '/p:PRODUCT_MAJOR=$(productMajor) /p:PRODUCT_MINOR=$(productMinor) /p:BUILD_MAJOR=$(buildMajor) /p:SignType=$(signType) /p:SigningIdentity=$(signingIdentity)'
+      msbuildArgs: '/p:PRODUCT_MAJOR=$(productMajor) /p:PRODUCT_MINOR=$(productMinor) /p:BUILD_MAJOR=$(Build.BuildNumber) /p:SignType=$(signType) /p:SigningIdentity=$(signingIdentity)'
       platform: x86
       configuration: '$(buildConfiguration)'
       clean: true
@@ -62,7 +63,7 @@ jobs:
     inputs:
       solution: '$(solution)'
       vsVersion: 15.0
-      msbuildArgs: '/p:PRODUCT_MAJOR=$(productMajor) /p:PRODUCT_MINOR=$(productMinor) /p:BUILD_MAJOR=$(buildMajor) /p:SignType=$(signType) /p:SigningIdentity=$(signingIdentity)'
+      msbuildArgs: '/p:PRODUCT_MAJOR=$(productMajor) /p:PRODUCT_MINOR=$(productMinor) /p:BUILD_MAJOR=$(Build.BuildNumber) /p:SignType=$(signType) /p:SigningIdentity=$(signingIdentity)'
       platform: x64
       configuration: '$(buildConfiguration)'
       clean: true
