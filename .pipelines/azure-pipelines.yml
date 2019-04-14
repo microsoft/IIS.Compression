@@ -9,16 +9,16 @@ jobs:
     - Team -equals IISAdmin
 
   variables:
+    solution: '**\Compression.sln'
+    TeamName: 'IIS'
     signType: test
     signingIdentity: 'Microsoft'
     buildType: 'dev'
-    buildInstaller: 'true'
     buildConfiguration: 'Release'
-    solution: '**\Compression.sln'
     productMajor: 1
     productMinor: 0
     buildMajor: 0
-    TeamName: 'IIS'
+    publishInstaller: 'true'
 
   steps:
   - checkout: self
@@ -106,7 +106,7 @@ jobs:
       SourceFolder: '$(Build.SourcesDirectory)\bin\Release\'
       Contents: '**\x86\**\*.msi'
       TargetFolder: '$(Build.ArtifactStagingDirectory)\Installers\x86'
-    condition: and(succeeded(), eq(variables['buildInstaller'], 'true'))
+    condition: and(succeeded(), eq(variables['publishInstaller'], 'true'))
 
   - task: CopyFiles@2
     displayName: 'Copy Installers x64'
@@ -114,7 +114,7 @@ jobs:
       SourceFolder: '$(Build.SourcesDirectory)\bin\Release\'
       Contents: '**\x64\**\*.msi'
       TargetFolder: '$(Build.ArtifactStagingDirectory)\Installers\x64'
-    condition: and(succeeded(), eq(variables['buildInstaller'], 'true'))
+    condition: and(succeeded(), eq(variables['publishInstaller'], 'true'))
 
   - task: PublishSymbols@2
     displayName: 'Enable Source Server'
@@ -141,4 +141,4 @@ jobs:
     inputs:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)\Installers'
       ArtifactName: installers
-    condition: and(succeeded(), eq(variables['buildInstaller'], 'true'))
+    condition: and(succeeded(), eq(variables['publishInstaller'], 'true'))
