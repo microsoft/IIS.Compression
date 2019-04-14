@@ -1,0 +1,13 @@
+name: $(Rev:rr)
+
+jobs:
+- template: build-template.yml
+  parameters:
+    agentPoolName: 'VSEng-MicroBuildV2CustomPool'
+    team: 'IISAdmin'
+    solution: '**\Compression.sln'
+    signType: 'test'
+    buildType: 'dev'
+    productMajor: 1
+    productMinor: 0
+    publishInstaller: 'true'
