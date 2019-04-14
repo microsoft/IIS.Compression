@@ -2,11 +2,10 @@ jobs:
 - job: build
 
   pool:
-    name: 'Hosted VS2017'
+    name: 'VSEng-MicroBuildV2CustomPool'
     demands:
     - msbuild
     - visualstudio
-    - vstest
 
   variables:
     signType: test
@@ -30,10 +29,10 @@ jobs:
     inputs:
       signType: '$(signType)'
 
-  - task: NuGetToolInstaller@0
+  - task: NuGetToolInstaller@1
+    displayName: 'Install NuGet Tool'
     inputs:
-      versionSpec: '>=4.7.1' 
-      checkLatest: false
+      versionSpec: 4.4.1
 
   - task: NuGetCommand@2
     displayName: 'NuGet restore'
