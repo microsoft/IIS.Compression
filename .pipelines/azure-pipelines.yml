@@ -40,6 +40,8 @@ jobs:
     inputs:
       command: 'restore'
       restoreSolution: $(solution)'
+      feedsToUse: config
+      nugetConfigPath: NuGet.config
 
   - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0 
     displayName: 'Component Detection'
