@@ -8,5 +8,6 @@ jobs:
     solution: '**\Compression.sln'
     productMajor: 1
     productMinor: 0
-    signType: 'test'
+    signType: 'real'
+    indexSourcesAndPublishSymbols: 'true'
     publishArtifactInstaller: 'true'

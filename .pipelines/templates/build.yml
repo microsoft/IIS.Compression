@@ -2,14 +2,14 @@ parameters:
   agentPoolName: ''
   agentPoolDemandTeam: ''
   solution: '**\*.sln'
-  signType: 'test'
-  signingIdentity: 'Microsoft'
-  teamName: 'IIS'
-  buildType: 'dev'
   buildConfiguration: 'Release'
   productMajor: 1
   productMinor: 0
-  publishInstaller: 'false'
+  signType: 'test'
+  signingIdentity: 'Microsoft'
+  teamName: 'IIS'
+  indexSourcesAndPublishSymbols: 'false'
+  publishArtifactInstaller: 'false'
 
 jobs:
 - job: build
@@ -105,7 +105,7 @@ jobs:
       Contents: '**\x64\**\*pdb'
       TargetFolder: '$(Build.ArtifactStagingDirectory)\Symbols\x64'
 
-  - ${{ if eq(parameters.publishInstaller, 'true') }}:
+  - ${{ if eq(parameters.publishArtifactInstaller, 'true') }}:
     - task: CopyFiles@2
       displayName: 'Copy Installers x86'
       inputs:
@@ -113,7 +113,7 @@ jobs:
         Contents: '**\*.msi'
         TargetFolder: '$(Build.ArtifactStagingDirectory)\Installers\x86'
 
-  - ${{ if eq(parameters.publishInstaller, 'true') }}:
+  - ${{ if eq(parameters.publishArtifactInstaller, 'true') }}:
     - task: CopyFiles@2
       displayName: 'Copy Installers x64'
       inputs:
@@ -121,7 +121,7 @@ jobs:
         Contents: '**\*.msi'
         TargetFolder: '$(Build.ArtifactStagingDirectory)\Installers\x64'
 
-  - ${{ if eq(parameters.buildType, 'official') }}:
+  - ${{ if eq(parameters.indexSourcesAndPublishSymbols, 'true') }}:
     - task: PublishSymbols@2
       displayName: 'Enable Source Server'
       inputs:
@@ -141,7 +141,7 @@ jobs:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)\Symbols'
       ArtifactName: Symbols
 
-  - ${{ if eq(parameters.publishInstaller, 'true') }}:
+  - ${{ if eq(parameters.publishArtifactInstaller, 'true') }}:
     - task: PublishBuildArtifacts@1
       displayName: 'Publish Artifact: Installers'
       inputs:
