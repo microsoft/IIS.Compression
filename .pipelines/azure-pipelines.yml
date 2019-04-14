@@ -40,7 +40,6 @@ jobs:
     inputs:
       command: 'restore'
       restoreSolution: $(solution)'
-      feedsToUse: config
 
   - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0 
     displayName: 'Component Detection'
