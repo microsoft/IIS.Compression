@@ -18,7 +18,7 @@ jobs:
     productMajor: 1
     productMinor: 0
     buildMajor: 0
-	TeamName: 'IISAdmin'
+    TeamName: 'IISAdmin'
 
   steps:
   - checkout: self
