@@ -76,7 +76,7 @@ jobs:
   - task: CopyFiles@2
     displayName: 'Copy Binaries x86'
     inputs:
-      SourceFolder: '$(Build.SourcesDirectory)\bin\Release\x86'
+      SourceFolder: '$(Build.SourcesDirectory)\bin\${{ parameters.buildConfiguration }}\x86'
       Contents: |
        **\*.dll
        **\*.exe
@@ -85,7 +85,7 @@ jobs:
   - task: CopyFiles@2
     displayName: 'Copy Binaries x64'
     inputs:
-      SourceFolder: '$(Build.SourcesDirectory)\bin\Release\x64'
+      SourceFolder: '$(Build.SourcesDirectory)\bin\${{ parameters.buildConfiguration }}\x64'
       Contents: |
        **\*.dll
        **\*.exe
@@ -109,7 +109,7 @@ jobs:
     - task: CopyFiles@2
       displayName: 'Copy Installers x86'
       inputs:
-        SourceFolder: '$(Build.SourcesDirectory)\bin\Release\x86'
+        SourceFolder: '$(Build.SourcesDirectory)\bin\${{ parameters.buildConfiguration }}\x86'
         Contents: '**\*.msi'
         TargetFolder: '$(Build.ArtifactStagingDirectory)\Installers\x86'
 
@@ -117,7 +117,7 @@ jobs:
     - task: CopyFiles@2
       displayName: 'Copy Installers x64'
       inputs:
-        SourceFolder: '$(Build.SourcesDirectory)\bin\Release\x64'
+        SourceFolder: '$(Build.SourcesDirectory)\bin\${{ parameters.buildConfiguration }}\x64'
         Contents: '**\*.msi'
         TargetFolder: '$(Build.ArtifactStagingDirectory)\Installers\x64'
 
