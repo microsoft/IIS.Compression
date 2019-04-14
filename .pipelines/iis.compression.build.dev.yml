@@ -1,10 +1,10 @@
 name: $(Rev:rr)
 
 jobs:
-- template: build-template.yml
+- template: templates\build-template.yml
   parameters:
     agentPoolName: 'VSEng-MicroBuildV2CustomPool'
-    team: 'IISAdmin'
+    agentPoolDemandTeam: 'IISAdmin'
     solution: '**\Compression.sln'
     signType: 'test'
     buildType: 'dev'

@@ -1,9 +1,10 @@
 parameters:
   agentPoolName: ''
-  team: ''
+  agentPoolDemandTeam: ''
   solution: '**\*.sln'
   signType: 'test'
   signingIdentity: 'Microsoft'
+  teamName: 'IIS'
   buildType: 'dev'
   buildConfiguration: 'Release'
   productMajor: 1
@@ -18,8 +19,11 @@ jobs:
     demands:
     - msbuild
     - visualstudio
-    - ${{ if ne(parameters.team, '') }}:
-      - Team -equals ${{ parameters.team }}
+    - ${{ if ne(parameters.agentPoolDemandTeam, '') }}:
+      - Team -equals ${{ parameters.agentPoolDemandTeam }}
+
+  variables:
+    TeamName: ${{ parameters.teamName }}
 
   steps:
   - checkout: self
