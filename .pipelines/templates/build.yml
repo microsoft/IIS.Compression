@@ -78,8 +78,8 @@ jobs:
     inputs:
       SourceFolder: '$(Build.SourcesDirectory)\bin\Release\x86'
       Contents: |
-       **\*.dll
-       **\*.exe
+       '**\*.dll'
+       '**\*.exe'
       TargetFolder: '$(Build.ArtifactStagingDirectory)\Binaries\x86'
 
   - task: CopyFiles@2
@@ -87,9 +87,9 @@ jobs:
     inputs:
       SourceFolder: '$(Build.SourcesDirectory)\bin\Release\x64'
       Contents: |
-       **\*.dll
-       **\*.exe
-      TargetFolder: '$(Build.ArtifactStagingDirectory)\Binaries'
+       '**\*.dll'
+       '**\*.exe'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)\Binaries\x64'
  
   - task: CopyFiles@2
     displayName: 'Copy Symbols x86'
