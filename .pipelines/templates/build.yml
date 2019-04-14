@@ -23,7 +23,7 @@ jobs:
       - Team -equals ${{ parameters.agentPoolDemandTeam }}
 
   variables:
-    TeamName: ${{ parameters.teamName }}
+    TeamName: ${{ parameters.teamName }} # required by MicroBuildTasks
 
   steps:
   - checkout: self
