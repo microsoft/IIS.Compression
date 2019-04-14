@@ -76,20 +76,20 @@ jobs:
   - task: CopyFiles@2
     displayName: 'Copy Binaries x86'
     inputs:
-      SourceFolder: '$(Build.SourcesDirectory)\bin\Release\'
+      SourceFolder: '$(Build.SourcesDirectory)\bin\Release\x86'
       Contents: |
-       **/x86/**/*.dll
-       **/x86/**/*.exe
+       **\*.dll
+       **\*.exe
       TargetFolder: '$(Build.ArtifactStagingDirectory)\Binaries\x86'
 
   - task: CopyFiles@2
     displayName: 'Copy Binaries x64'
     inputs:
-      SourceFolder: '$(Build.SourcesDirectory)\bin\Release\'
+      SourceFolder: '$(Build.SourcesDirectory)\bin\Release\x64'
       Contents: |
-       **/x64/**/*.dll
-       **/x64/**/*.exe
-      TargetFolder: '$(Build.ArtifactStagingDirectory)\Binaries\x64'
+       **\*.dll
+       **\*.exe
+      TargetFolder: '$(Build.ArtifactStagingDirectory)\Binaries'
  
   - task: CopyFiles@2
     displayName: 'Copy Symbols x86'
@@ -109,23 +109,23 @@ jobs:
     - task: CopyFiles@2
       displayName: 'Copy Installers x86'
       inputs:
-        SourceFolder: '$(Build.SourcesDirectory)\bin\Release\'
-        Contents: '**\x86\**\*.msi'
+        SourceFolder: '$(Build.SourcesDirectory)\bin\Release\x86'
+        Contents: '**\*.msi'
         TargetFolder: '$(Build.ArtifactStagingDirectory)\Installers\x86'
 
   - ${{ if eq(parameters.publishInstaller, 'true') }}:
     - task: CopyFiles@2
       displayName: 'Copy Installers x64'
       inputs:
-        SourceFolder: '$(Build.SourcesDirectory)\bin\Release\'
-        Contents: '**\x64\**\*.msi'
+        SourceFolder: '$(Build.SourcesDirectory)\bin\Release\x64'
+        Contents: '**\*.msi'
         TargetFolder: '$(Build.ArtifactStagingDirectory)\Installers\x64'
 
   - ${{ if eq(parameters.buildType, 'official') }}:
     - task: PublishSymbols@2
       displayName: 'Enable Source Server'
       inputs:
-        SymbolsFolder: '$(Build.ArtifactStagingDirectory)\symbols'
+        SymbolsFolder: '$(Build.ArtifactStagingDirectory)\Symbols'
         SearchPattern: '**\*.pdb'
         SymbolServerType: TeamServices
 
@@ -139,11 +139,11 @@ jobs:
     displayName: 'Publish Artifact: Symbols'
     inputs:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)\Symbols'
-      ArtifactName: symbols
+      ArtifactName: Symbols
 
   - ${{ if eq(parameters.publishInstaller, 'true') }}:
     - task: PublishBuildArtifacts@1
       displayName: 'Publish Artifact: Installers'
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)\Installers'
-        ArtifactName: installers
+        ArtifactName: Installers
