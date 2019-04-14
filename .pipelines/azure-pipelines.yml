@@ -10,7 +10,7 @@ jobs:
 
   variables:
     signType: test
-    signingIdentity: 'microsoft'
+    signingIdentity: 'Microsoft'
     buildType: 'dev'
     buildInstaller: 'true'
     buildConfiguration: 'Release'
@@ -50,7 +50,7 @@ jobs:
     inputs:
       solution: '$(solution)'
       vsVersion: 15.0
-      msbuildArgs: '/p:PRODUCT_MAJOR=$(productMajor) /p:PRODUCT_MINOR=$(productMinor) /p:BUILD_MAJOR=$(Build.BuildNumber) /p:SignType=$(signType) /p:SigningIdentity=$(signingIdentity)'
+      msbuildArgs: '/p:PRODUCT_MAJOR=$(productMajor) /p:PRODUCT_MINOR=$(productMinor) /p:BUILD_MAJOR=$(buildMajor) /p:SignType=$(signType) /p:SigningIdentity=$(signingIdentity)'
       platform: x86
       configuration: '$(buildConfiguration)'
       clean: true
@@ -61,7 +61,7 @@ jobs:
     inputs:
       solution: '$(solution)'
       vsVersion: 15.0
-      msbuildArgs: '/p:PRODUCT_MAJOR=$(productMajor) /p:PRODUCT_MINOR=$(productMinor) /p:BUILD_MAJOR=$(Build.BuildNumber) /p:SignType=$(signType) /p:SigningIdentity=$(signingIdentity)'
+      msbuildArgs: '/p:PRODUCT_MAJOR=$(productMajor) /p:PRODUCT_MINOR=$(productMinor) /p:BUILD_MAJOR=$(buildMajor) /p:SignType=$(signType) /p:SigningIdentity=$(signingIdentity)'
       platform: x64
       configuration: '$(buildConfiguration)'
       clean: true
