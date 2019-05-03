@@ -43,9 +43,9 @@
     <Content Include="bitmaps\bannrbmp.bmp" />
     <Content Include="bitmaps\iiscompression.ico" />
     <Content Include="bitmaps\dlgbmp.bmp" />
+    <Content Include="iiscompression_readme.htm" />
     <Content Include="license\License.rtf" />
     <Content Include="packages.config" />
-    <Content Include="readme.htm" />
     <Content Include="ThirdPartyNotices.txt" />
   </ItemGroup>
   <ItemGroup>
