@@ -13,9 +13,11 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
     <OutputName>iiscompression_x86</OutputName>
+    <InstallerPlatform>x86</InstallerPlatform>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x64' ">
     <OutputName>iiscompression_amd64</OutputName>
+    <InstallerPlatform>x64</InstallerPlatform>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(SignType)' != '' ">
     <SignOutput>True</SignOutput>
