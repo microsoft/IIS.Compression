@@ -11,3 +11,4 @@ jobs:
     signType: 'real'
     indexSourcesAndPublishSymbols: 'true'
     publishArtifactInstallers: 'true'
+    publishArtifactSources: 'true'

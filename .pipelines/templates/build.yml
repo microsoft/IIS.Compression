@@ -10,7 +10,7 @@ parameters:
   teamName: 'IIS'
   indexSourcesAndPublishSymbols: 'false'
   publishArtifactInstallers: 'false'
-  publishArtifactSources: 'true'
+  publishArtifactSources: 'false'
 
 jobs:
 - job: build
