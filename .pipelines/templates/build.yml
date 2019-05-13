@@ -9,7 +9,8 @@ parameters:
   signingIdentity: 'Microsoft'
   teamName: 'IIS'
   indexSourcesAndPublishSymbols: 'false'
-  publishArtifactInstaller: 'false'
+  publishArtifactInstallers: 'false'
+  publishArtifactSources: 'false'
 
 jobs:
 - job: build
@@ -29,6 +30,14 @@ jobs:
   - checkout: self
     clean: true
     submodules: recursive
+
+  - ${{ if eq(parameters.publishArtifactSources, 'true') }}:
+    - task: CopyFiles@2
+      displayName: 'Copy Sources'
+      inputs:
+        SourceFolder: '$(Build.SourcesDirectory)'
+        Contents: '**'
+        TargetFolder: '$(Build.ArtifactStagingDirectory)\Sources'
 
   - task: ms-vseng.MicroBuildTasks.30666190-6959-11e5-9f96-f56098202fef.MicroBuildSigningPlugin@1
     displayName: 'Install Signing Plugin'
@@ -105,7 +114,7 @@ jobs:
       Contents: '**\x64\**\*pdb'
       TargetFolder: '$(Build.ArtifactStagingDirectory)\Symbols\x64'
 
-  - ${{ if eq(parameters.publishArtifactInstaller, 'true') }}:
+  - ${{ if eq(parameters.publishArtifactInstallers, 'true') }}:
     - task: CopyFiles@2
       displayName: 'Copy Installers x86'
       inputs:
@@ -113,7 +122,7 @@ jobs:
         Contents: '**\*.msi'
         TargetFolder: '$(Build.ArtifactStagingDirectory)\Installers\x86'
 
-  - ${{ if eq(parameters.publishArtifactInstaller, 'true') }}:
+  - ${{ if eq(parameters.publishArtifactInstallers, 'true') }}:
     - task: CopyFiles@2
       displayName: 'Copy Installers x64'
       inputs:
@@ -141,9 +150,16 @@ jobs:
       PathtoPublish: '$(Build.ArtifactStagingDirectory)\Symbols'
       ArtifactName: Symbols
 
-  - ${{ if eq(parameters.publishArtifactInstaller, 'true') }}:
+  - ${{ if eq(parameters.publishArtifactInstallers, 'true') }}:
     - task: PublishBuildArtifacts@1
       displayName: 'Publish Artifact: Installers'
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)\Installers'
         ArtifactName: Installers
+
+  - ${{ if eq(parameters.publishArtifactSources, 'true') }}:
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Artifact: Sources'
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)\Sources'
+        ArtifactName: Sources
