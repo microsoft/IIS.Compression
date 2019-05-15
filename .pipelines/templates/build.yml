@@ -134,7 +134,7 @@ jobs:
 
   - ${{ if eq(parameters.signType, 'real') }}:
     - task: ms-vseng.MicroBuildShipTasks.7c429315-71ba-4cb3-94bb-f829c95f7915.MicroBuildCodesignVerify@2
-      displayName: 'Verify Signed Binaries'
+      displayName: 'Verify Signed Files'
       inputs:
         TargetFolders: '$(Build.ArtifactStagingDirectory)\Binaries'
 
