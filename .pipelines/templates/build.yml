@@ -150,7 +150,7 @@ jobs:
       displayName: 'Verify Signed Installers'
       inputs:
         TargetFolders: '$(Build.ArtifactStagingDirectory)\Installers'
-      WhiteListPathForCerts: SignVerifyWhitelist.csv
+        WhiteListPathForCerts: SignVerifyWhitelist.csv
 
   - ${{ if eq(parameters.indexSourcesAndPublishSymbols, 'true') }}:
     - task: PublishSymbols@2
