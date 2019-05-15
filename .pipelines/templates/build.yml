@@ -36,7 +36,9 @@ jobs:
       displayName: 'Copy Sources'
       inputs:
         SourceFolder: '$(Build.SourcesDirectory)'
-        Contents: '**'
+        Contents: |
+         **
+         !.git\**\*
         TargetFolder: '$(Build.ArtifactStagingDirectory)\Sources'
 
   - task: ms-vseng.MicroBuildTasks.30666190-6959-11e5-9f96-f56098202fef.MicroBuildSigningPlugin@1
