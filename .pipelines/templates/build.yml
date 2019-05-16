@@ -134,9 +134,10 @@ jobs:
 
   - ${{ if eq(parameters.signType, 'real') }}:
     - task: ms-vseng.MicroBuildShipTasks.7c429315-71ba-4cb3-94bb-f829c95f7915.MicroBuildCodesignVerify@2
-      displayName: 'Verify Signed Files'
+      displayName: 'Verify Signed Binaries'
       inputs:
         TargetFolders: '$(Build.ArtifactStagingDirectory)\Binaries'
+        WhiteListPathForCerts: '$(Build.SourcesDirectory)\.pipelines\templates\SignVerifyWhitelist.txt'
 
   - ${{ if and(eq(parameters.signType, 'real'), eq(parameters.publishArtifactInstallers, 'true')) }}:
     - task: ms-vseng.MicroBuildShipTasks.7c429315-71ba-4cb3-94bb-f829c95f7915.MicroBuildCodesignVerify@2
