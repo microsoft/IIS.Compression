@@ -36,7 +36,9 @@ jobs:
       displayName: 'Copy Sources'
       inputs:
         SourceFolder: '$(Build.SourcesDirectory)'
-        Contents: '**'
+        Contents: |
+         **
+         !.git\**\*
         TargetFolder: '$(Build.ArtifactStagingDirectory)\Sources'
 
   - task: ms-vseng.MicroBuildTasks.30666190-6959-11e5-9f96-f56098202fef.MicroBuildSigningPlugin@1
@@ -129,6 +131,20 @@ jobs:
         SourceFolder: '$(Build.SourcesDirectory)\bin\${{ parameters.buildConfiguration }}\x64'
         Contents: '**\*.msi'
         TargetFolder: '$(Build.ArtifactStagingDirectory)\Installers\x64'
+
+  - ${{ if eq(parameters.signType, 'real') }}:
+    - task: ms-vseng.MicroBuildShipTasks.7c429315-71ba-4cb3-94bb-f829c95f7915.MicroBuildCodesignVerify@2
+      displayName: 'Verify Signed Binaries'
+      inputs:
+        TargetFolders: '$(Build.ArtifactStagingDirectory)\Binaries'
+        WhiteListPathForCerts: '$(Build.SourcesDirectory)\.pipelines\templates\no_authenticode.txt'
+
+  - ${{ if and(eq(parameters.signType, 'real'), eq(parameters.publishArtifactInstallers, 'true')) }}:
+    - task: ms-vseng.MicroBuildShipTasks.7c429315-71ba-4cb3-94bb-f829c95f7915.MicroBuildCodesignVerify@2
+      displayName: 'Verify Signed Installers'
+      inputs:
+        TargetFolders: '$(Build.ArtifactStagingDirectory)\Installers'
+        WhiteListPathForCerts: '$(Build.SourcesDirectory)\.pipelines\templates\no_authenticode.txt'
 
   - ${{ if eq(parameters.indexSourcesAndPublishSymbols, 'true') }}:
     - task: PublishSymbols@2
