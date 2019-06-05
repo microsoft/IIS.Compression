@@ -5,7 +5,6 @@ resources:
     - repository: MicrosoftIISCommon
       type: github
       name: Microsoft/IIS.Common
-      ref: 'refs/heads/bangbingsyb/signverify-whitelist'
       endpoint: GitHub-IIS-PAT
 
 jobs:
