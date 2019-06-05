@@ -5,6 +5,7 @@ resources:
     - repository: MicrosoftIISCommon
       type: github
       name: Microsoft/IIS.Common
+      ref: 'refs/heads/bangbingsyb/signverify-whitelist'
       endpoint: GitHub-IIS-PAT
 
 jobs:
@@ -19,4 +20,4 @@ jobs:
     indexSourcesAndPublishSymbols: 'true'
     publishArtifactInstallers: 'true'
     publishArtifactSources: 'true'
-    whiteListPathForAuthenticodeSign: '..\IIS-Common\.azure\templates\no_authenticode.txt'
+    whiteListPathForAuthenticodeSign: '$(Build.SourcesDirectory)\IIS-Common\.azure\templates\no_authenticode.txt'
