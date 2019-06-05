@@ -13,9 +13,9 @@ SeverityNames=(Success=0x0
                Error=0x3
               )
 
-Messageid=1000 Severity=Error SymbolicName=BROTLI_COMPRESSION_LEVEL_OUT_OF_BOUNDS
+Messageid=1000 Severity=Warning SymbolicName=BROTLI_COMPRESSION_LEVEL_OUT_OF_BOUNDS
 Language=English
-The Brotli compression level '%1' is larger than the maximum allowed value '%2'.
+The Brotli compression level '%1' is larger than the maximum allowed value '%2' and has been reset to '%2'.
 .
 
 ;
