@@ -19,3 +19,4 @@ jobs:
     indexSourcesAndPublishSymbols: 'true'
     publishArtifactInstallers: 'true'
     publishArtifactSources: 'true'
+    whiteListPathForAuthenticodeSign: '$(Build.SourcesDirectory)\IIS-Common\.azure\templates\no_authenticode.txt'

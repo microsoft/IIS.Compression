@@ -1,2 +1,0 @@
-**\*.cab.cab
-**\*wixuiwixca.dll
