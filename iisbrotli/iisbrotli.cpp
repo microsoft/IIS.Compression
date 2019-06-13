@@ -157,10 +157,10 @@ Compress(
     // so only the upper bound needs to be checked.
     if (compression_level > BROTLI_MAX_QUALITY)
     {
-        ReportCompressionLevelOutOfBounds(compression_level, BROTLI_MAX_QUALITY);
         // Ignore any failure from event reporting
-        hr = E_INVALIDARG;
-        goto Finished;
+        ReportCompressionLevelOutOfBounds(compression_level, BROTLI_MAX_QUALITY);
+
+        compression_level = BROTLI_MAX_QUALITY;
     }
 
     if (pContext->_pState == NULL)
@@ -284,10 +284,10 @@ Compress2(
     // so only the upper bound needs to be checked.
     if (compression_level > BROTLI_MAX_QUALITY)
     {
-        ReportCompressionLevelOutOfBounds(compression_level, BROTLI_MAX_QUALITY);
         // Ignore any failure from event reporting
-        hr = E_INVALIDARG;
-        goto Finished;
+        ReportCompressionLevelOutOfBounds(compression_level, BROTLI_MAX_QUALITY);
+
+        compression_level = BROTLI_MAX_QUALITY;
     }
 
     if (pContext->_pState == NULL)
@@ -444,7 +444,7 @@ ReportCompressionLevelOutOfBounds(
     apsz[1] = bufMaxLevel;
 
     fReport = ReportEvent(g_hEventLog,                // hEventLog
-                          EVENTLOG_ERROR_TYPE,        // wType
+                          EVENTLOG_WARNING_TYPE,      // wType
                           0,                          // wCategory
                           BROTLI_COMPRESSION_LEVEL_OUT_OF_BOUNDS,     // dwEventID
                           NULL,                       // lpUserSid

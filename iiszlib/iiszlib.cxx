@@ -221,10 +221,10 @@ Compress(
     // so only the upper bound needs to be checked.
     if (compression_level > Z_BEST_COMPRESSION)
     {
-        ReportCompressionLevelOutOfBounds(compression_level, Z_BEST_COMPRESSION);
         // Ignore any failure from event reporting
-        hr = E_INVALIDARG;
-        goto Finished;
+        ReportCompressionLevelOutOfBounds(compression_level, Z_BEST_COMPRESSION);
+
+        compression_level = Z_BEST_COMPRESSION;
     }
 
     if (pContext->_fInitialized == FALSE)
@@ -335,10 +335,10 @@ Compress2(
     // so only the upper bound needs to be checked.
     if (compression_level > Z_BEST_COMPRESSION)
     {
-        ReportCompressionLevelOutOfBounds(compression_level, Z_BEST_COMPRESSION);
         // Ignore any failure from event reporting
-        hr = E_INVALIDARG;
-        goto Finished;
+        ReportCompressionLevelOutOfBounds(compression_level, Z_BEST_COMPRESSION);
+
+        compression_level = Z_BEST_COMPRESSION;
     }
 
     if (pContext->_fInitialized == FALSE)
@@ -540,7 +540,7 @@ ReportCompressionLevelOutOfBounds(
     apsz[1] = bufMaxLevel;
 
     fReport = ReportEvent(g_hEventLog,                // hEventLog
-                          EVENTLOG_ERROR_TYPE,        // wType
+                          EVENTLOG_WARNING_TYPE,      // wType
                           0,                          // wCategory
                           ZLIB_COMPRESSION_LEVEL_OUT_OF_BOUNDS,     // dwEventID
                           NULL,                       // lpUserSid

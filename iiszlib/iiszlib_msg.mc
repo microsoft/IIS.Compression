@@ -13,9 +13,9 @@ SeverityNames=(Success=0x0
                Error=0x3
               )
 
-Messageid=1000 Severity=Error SymbolicName=ZLIB_COMPRESSION_LEVEL_OUT_OF_BOUNDS
+Messageid=1000 Severity=Warning SymbolicName=ZLIB_COMPRESSION_LEVEL_OUT_OF_BOUNDS
 Language=English
-The Zlib compression level '%1' is larger than the maximum allowed value '%2'.
+The Zlib compression level '%1' is larger than the maximum allowed value '%2' and has been reset to '%2'.
 .
 
 ;
