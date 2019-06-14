@@ -22,6 +22,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(SubmoduleBrotli)\c\common\dictionary.c" />
+    <ClCompile Include="$(SubmoduleBrotli)\c\common\transform.c" />
     <ClCompile Include="$(SubmoduleBrotli)\c\dec\bit_reader.c" />
     <ClCompile Include="$(SubmoduleBrotli)\c\dec\decode.c" />
     <ClCompile Include="$(SubmoduleBrotli)\c\dec\huffman.c" />
@@ -36,6 +37,7 @@
     <ClCompile Include="$(SubmoduleBrotli)\c\enc\compress_fragment_two_pass.c" />
     <ClCompile Include="$(SubmoduleBrotli)\c\enc\dictionary_hash.c" />
     <ClCompile Include="$(SubmoduleBrotli)\c\enc\encode.c" />
+    <ClCompile Include="$(SubmoduleBrotli)\c\enc\encoder_dict.c" />
     <ClCompile Include="$(SubmoduleBrotli)\c\enc\entropy_encode.c" />
     <ClCompile Include="$(SubmoduleBrotli)\c\enc\histogram.c" />
     <ClCompile Include="$(SubmoduleBrotli)\c\enc\literal_cost.c" />
@@ -46,15 +48,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(SubmoduleBrotli)\c\common\constants.h" />
+    <ClInclude Include="$(SubmoduleBrotli)\c\common\context.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\common\dictionary.h" />
+    <ClInclude Include="$(SubmoduleBrotli)\c\common\platform.h" />
+    <ClInclude Include="$(SubmoduleBrotli)\c\common\transform.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\common\version.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\dec\bit_reader.h" />
-    <ClInclude Include="$(SubmoduleBrotli)\c\dec\context.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\dec\huffman.h" />
-    <ClInclude Include="$(SubmoduleBrotli)\c\dec\port.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\dec\prefix.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\dec\state.h" />
-    <ClInclude Include="$(SubmoduleBrotli)\c\dec\transform.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\backward_references.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\backward_references_hq.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\backward_references_inc.h" />
@@ -69,17 +71,19 @@
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\command.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\compress_fragment.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\compress_fragment_two_pass.h" />
-    <ClInclude Include="$(SubmoduleBrotli)\c\enc\context.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\dictionary_hash.h" />
+    <ClInclude Include="$(SubmoduleBrotli)\c\enc\encoder_dict.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\entropy_encode.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\entropy_encode_static.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\fast_log.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\find_match_length.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\hash.h" />
+    <ClInclude Include="$(SubmoduleBrotli)\c\enc\hash_composite_inc.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\hash_forgetful_chain_inc.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\hash_longest_match64_inc.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\hash_longest_match_inc.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\hash_longest_match_quickly_inc.h" />
+    <ClInclude Include="$(SubmoduleBrotli)\c\enc\hash_rolling_inc.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\hash_to_binary_tree_inc.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\histogram.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\histogram_inc.h" />
@@ -87,7 +91,7 @@
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\memory.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\metablock.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\metablock_inc.h" />
-    <ClInclude Include="$(SubmoduleBrotli)\c\enc\port.h" />
+    <ClInclude Include="$(SubmoduleBrotli)\c\enc\params.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\prefix.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\quality.h" />
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\ringbuffer.h" />
