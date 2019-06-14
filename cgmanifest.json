@@ -1,0 +1,23 @@
+{
+  "Registrations": [
+    {
+      "component": {
+        "type": "git",
+        "git": {
+          "repositoryUrl": "https://github.com/google/brotli",
+          "commitHash": "78e7bbc3c34bb85ecc9a912929e8b3b224973b05"
+        }
+      }
+    },
+    {
+      "component": {
+        "type": "git",
+        "git": {
+          "repositoryUrl": "https://github.com/madler/zlib",
+          "commitHash": "cacf7f1d4e3d44d871b605da3b647f07d718623f"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}
