@@ -18,13 +18,7 @@
     <ClInclude Include="$(SubmoduleBrotli)\c\dec\bit_reader.h">
       <Filter>dec</Filter>
     </ClInclude>
-    <ClInclude Include="$(SubmoduleBrotli)\c\dec\context.h">
-      <Filter>dec</Filter>
-    </ClInclude>
     <ClInclude Include="$(SubmoduleBrotli)\c\dec\huffman.h">
-      <Filter>dec</Filter>
-    </ClInclude>
-    <ClInclude Include="$(SubmoduleBrotli)\c\dec\port.h">
       <Filter>dec</Filter>
     </ClInclude>
     <ClInclude Include="$(SubmoduleBrotli)\c\dec\prefix.h">
@@ -33,8 +27,6 @@
     <ClInclude Include="$(SubmoduleBrotli)\c\dec\state.h">
       <Filter>dec</Filter>
     </ClInclude>
-    <ClInclude Include="$(SubmoduleBrotli)\c\dec\transform.h">
-      <Filter>dec</Filter>
     </ClInclude>
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\backward_references.h">
       <Filter>enc</Filter>
@@ -78,10 +70,10 @@
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\compress_fragment_two_pass.h">
       <Filter>enc</Filter>
     </ClInclude>
-    <ClInclude Include="$(SubmoduleBrotli)\c\enc\context.h">
+    <ClInclude Include="$(SubmoduleBrotli)\c\enc\dictionary_hash.h">
       <Filter>enc</Filter>
     </ClInclude>
-    <ClInclude Include="$(SubmoduleBrotli)\c\enc\dictionary_hash.h">
+    <ClInclude Include="$(SubmoduleBrotli)\c\enc\encoder_dict.h">
       <Filter>enc</Filter>
     </ClInclude>
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\entropy_encode.h">
@@ -99,6 +91,9 @@
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\hash.h">
       <Filter>enc</Filter>
     </ClInclude>
+    <ClInclude Include="$(SubmoduleBrotli)\c\enc\hash_composite_inc.h">
+      <Filter>enc</Filter>
+    </ClInclude>
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\hash_forgetful_chain_inc.h">
       <Filter>enc</Filter>
     </ClInclude>
@@ -109,6 +104,9 @@
       <Filter>enc</Filter>
     </ClInclude>
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\hash_longest_match64_inc.h">
+      <Filter>enc</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SubmoduleBrotli)\c\enc\hash_rolling_inc.h">
       <Filter>enc</Filter>
     </ClInclude>
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\hash_to_binary_tree_inc.h">
@@ -132,7 +130,7 @@
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\metablock_inc.h">
       <Filter>enc</Filter>
     </ClInclude>
-    <ClInclude Include="$(SubmoduleBrotli)\c\enc\port.h">
+    <ClInclude Include="$(SubmoduleBrotli)\c\enc\params.h">
       <Filter>enc</Filter>
     </ClInclude>
     <ClInclude Include="$(SubmoduleBrotli)\c\enc\prefix.h">
@@ -159,12 +157,20 @@
     <ClInclude Include="$(SubmoduleBrotli)\c\common\constants.h">
       <Filter>common</Filter>
     </ClInclude>
+    <ClInclude Include="$(SubmoduleBrotli)\c\common\context.h">
+      <Filter>common</Filter>
+    </ClInclude>
     <ClInclude Include="$(SubmoduleBrotli)\c\common\dictionary.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SubmoduleBrotli)\c\common\platform.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="$(SubmoduleBrotli)\c\common\transform.h">
       <Filter>common</Filter>
     </ClInclude>
     <ClInclude Include="$(SubmoduleBrotli)\c\common\version.h">
       <Filter>common</Filter>
-    </ClInclude>
     <ClInclude Include="$(SubmoduleBrotli)\c\include\brotli\decode.h">
       <Filter>include</Filter>
     </ClInclude>
@@ -221,6 +227,9 @@
     <ClCompile Include="$(SubmoduleBrotli)\c\enc\encode.c">
       <Filter>enc</Filter>
     </ClCompile>
+    <ClCompile Include="$(SubmoduleBrotli)\c\enc\encoder_dict.c">
+      <Filter>enc</Filter>
+    </ClCompile>
     <ClCompile Include="$(SubmoduleBrotli)\c\enc\entropy_encode.c">
       <Filter>enc</Filter>
     </ClCompile>
@@ -243,6 +252,9 @@
       <Filter>enc</Filter>
     </ClCompile>
     <ClCompile Include="$(SubmoduleBrotli)\c\common\dictionary.c">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SubmoduleBrotli)\c\common\transform.c">
       <Filter>common</Filter>
     </ClCompile>
   </ItemGroup>
