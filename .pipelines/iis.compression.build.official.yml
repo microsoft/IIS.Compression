@@ -1,4 +1,4 @@
-name: $(Rev:rr)
+name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
 
 resources:
   repositories:

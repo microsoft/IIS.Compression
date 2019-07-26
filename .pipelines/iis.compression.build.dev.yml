@@ -4,12 +4,12 @@ trigger:
   batch: true
   branches:
     include:
-    - bangbingsyb/ci-pr-validation
+    - master
 
 pr:
   branches:
     include:
-    - bangbingsyb/ci-pr-validation
+    - master
 
 resources:
   repositories:
