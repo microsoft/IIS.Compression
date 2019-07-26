@@ -1,4 +1,15 @@
-name: $(Rev:rr)
+name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+
+trigger:
+  batch: true
+  branches:
+    include:
+    - bangbingsyb/ci-pr-validation
+
+pr:
+  branches:
+    include:
+    - bangbingsyb/ci-pr-validation
 
 resources:
   repositories:
