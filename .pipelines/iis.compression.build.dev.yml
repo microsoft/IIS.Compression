@@ -6,11 +6,6 @@ trigger:
     include:
     - master
 
-pr:
-  branches:
-    include:
-    - master
-
 resources:
   repositories:
     - repository: MicrosoftIISCommon
