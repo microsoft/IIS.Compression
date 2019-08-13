@@ -1,5 +1,8 @@
 name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.rr)
 
+pr:
+  - master
+
 trigger:
   batch: true
   branches:
