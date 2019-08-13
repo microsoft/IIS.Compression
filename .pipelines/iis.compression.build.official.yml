@@ -1,5 +1,8 @@
 name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.rr)
 
+pr: none
+trigger: none
+
 resources:
   repositories:
     - repository: MicrosoftIISCommon
