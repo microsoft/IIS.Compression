@@ -1,11 +1,5 @@
 name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.rr)
 
-trigger:
-  batch: true
-  branches:
-    include:
-    - master
-
 resources:
   repositories:
     - repository: MicrosoftIISCommon
