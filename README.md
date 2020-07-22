@@ -44,6 +44,13 @@ The IIS Compression installer registers `iisbrotli.dll` as the `br` (Brotli) com
 </httpCompression>
 ```
 
+### Install Visual Studio
+1. Install Visual Studio 2017
+2. You need to install these components additionally after(or while) installing Desktop development with C++
+- Wix Toolset Visual Studio 2017 Extension
+- Visual C++ ATL (x86/x64) with Spectre Mitigations
+- VC++ 2017 version 15.9 v14.16 latest v141 tools
+
 ### Build
 1. Clone this project with submodules.
 ```
