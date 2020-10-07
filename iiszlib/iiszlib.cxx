@@ -428,11 +428,11 @@ Compress2(
              *input_used,
              *output_used));
 
-    if (hr == S_OK &&
-        flushMode == Z_SYNC_FLUSH &&
-        ret == Z_BUF_ERROR &&
+    if (*output_used == 0 &&
         *input_used == 0 &&
-        *output_used == 0)
+        ret == Z_BUF_ERROR &&
+        flushMode == Z_SYNC_FLUSH &&
+        hr == S_OK)
     {
         // If this function (Compress2) is called twice with zero input data and the same operation value (IIS_COMPRESSION_OPERATION_PROCESS),
         // the deflate() function will return Z_BUF_ERROR for the second call.
