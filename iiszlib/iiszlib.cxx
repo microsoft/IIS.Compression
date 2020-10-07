@@ -428,7 +428,7 @@ Compress2(
              *input_used,
              *output_used));
 
-    if (hr = S_OK &&
+    if (hr == S_OK &&
         flushMode == Z_SYNC_FLUSH &&
         ret == Z_BUF_ERROR &&
         *input_used == 0 &&
