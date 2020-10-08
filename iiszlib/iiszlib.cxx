@@ -435,7 +435,7 @@ Compress2(
     {
         // If this function (Compress2) is called twice with zero input data and the same operation value (IIS_COMPRESSION_OPERATION_PROCESS),
         // the deflate() function will return Z_BUF_ERROR for the second call.
-        // In that case, we should return S_FALSE instead of S_OK to indicate this funciton should not be called again.
+        DBGINFO((DBG_CONTEXT, "Compress2 was called twice with zero input data with Z_SYSNC_FLUSH. Compress2 should not be called again\n"));
         hr = S_FALSE;
     }
 
