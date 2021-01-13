@@ -1,9 +1,0 @@
-resources:
-  repositories:
-    - repository: MicrosoftIISCommon
-      type: github
-      name: Microsoft/IIS.Common
-      endpoint: GitHub-IIS-Token
-
-jobs:
-- template: azure-pipelines.yml@MicrosoftIISCommon # Template reference
