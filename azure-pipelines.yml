@@ -3,7 +3,7 @@ resources:
     - repository: MicrosoftIISCommon
       type: github
       name: Microsoft/IIS.Common
-      endpoint: github.com_shirhatti
+      endpoint: GitHub-IIS-Token
 
 jobs:
 - template: azure-pipelines.yml@MicrosoftIISCommon # Template reference
