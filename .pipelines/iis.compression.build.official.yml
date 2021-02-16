@@ -14,7 +14,6 @@ jobs:
 - template: .azure\templates\build.yml@MicrosoftIISCommon
   parameters:
     agentPoolName: 'VSEng-MicroBuildV2CustomPool'
-    agentPoolDemandTeam: 'IISAdmin'
     solution: '**\Compression.sln'
     productMajor: 1
     productMinor: 0
