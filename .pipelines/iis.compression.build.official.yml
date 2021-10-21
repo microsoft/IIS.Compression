@@ -8,12 +8,12 @@ resources:
     - repository: MicrosoftIISCommon
       type: github
       name: Microsoft/IIS.Common
-      endpoint: GitHub-IIS-Token
+      endpoint: IIS-Github
 
 jobs:
 - template: .azure\templates\build.yml@MicrosoftIISCommon
   parameters:
-    agentPoolName: 'VSEng-MicroBuildV2CustomPool'
+    agentPoolName: 'VSEngSS-MicroBuild2019-1ES'
     agentPoolDemandTeam: 'IISAdmin'
     solution: '**\Compression.sln'
     productMajor: 1
