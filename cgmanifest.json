@@ -5,7 +5,7 @@
         "type": "git",
         "git": {
           "repositoryUrl": "https://github.com/google/brotli",
-          "commitHash": "78e7bbc3c34bb85ecc9a912929e8b3b224973b05"
+          "commitHash": "e61745a6b7add50d380cfd7d3883dd6c62fc2c71"
         }
       }
     },
