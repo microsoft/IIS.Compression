@@ -215,6 +215,9 @@
     <ClCompile Include="$(SubmoduleBrotli)\c\enc\cluster.c">
       <Filter>enc</Filter>
     </ClCompile>
+    <ClCompile Include="$(SubmoduleBrotli)\c\enc\command.c">
+      <Filter>enc</Filter>
+    </ClCompile>
     <ClCompile Include="$(SubmoduleBrotli)\c\enc\compress_fragment.c">
       <Filter>enc</Filter>
     </ClCompile>
@@ -231,6 +234,9 @@
       <Filter>enc</Filter>
     </ClCompile>
     <ClCompile Include="$(SubmoduleBrotli)\c\enc\entropy_encode.c">
+      <Filter>enc</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SubmoduleBrotli)\c\enc\fast_log.c">
       <Filter>enc</Filter>
     </ClCompile>
     <ClCompile Include="$(SubmoduleBrotli)\c\enc\histogram.c">
@@ -251,7 +257,16 @@
     <ClCompile Include="$(SubmoduleBrotli)\c\enc\utf8_util.c">
       <Filter>enc</Filter>
     </ClCompile>
+    <ClCompile Include="$(SubmoduleBrotli)\c\common\constants.c">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SubmoduleBrotli)\c\common\context.c">
+      <Filter>common</Filter>
+    </ClCompile>
     <ClCompile Include="$(SubmoduleBrotli)\c\common\dictionary.c">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="$(SubmoduleBrotli)\c\common\platform.c">
       <Filter>common</Filter>
     </ClCompile>
     <ClCompile Include="$(SubmoduleBrotli)\c\common\transform.c">
