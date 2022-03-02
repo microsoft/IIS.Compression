@@ -19,10 +19,11 @@ resources:
 jobs:
 - template: .azure\templates\build.yml@MicrosoftIISCommon
   parameters:
-    agentPoolName: 'VSEng-MicroBuildV2CustomPool'
-    agentPoolDemandTeam: 'IISAdmin'
+    agentPoolName: 'VSEngSS-MicroBuild2019-1ES'
     solution: '**\Compression.sln'
+    restoreSolution: 'Compression.sln;IIS-Setup/IIS-Setup.sln'
     productMajor: 1
     productMinor: 0
     signType: 'test'
     publishArtifactInstallers: 'true'
+    msbuildArgs: '/p:RunWixToolsOutOfProc=true'
