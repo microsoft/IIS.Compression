@@ -1,13 +1,13 @@
 name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.rr)
 
 pr:
-  - master
+  - main
 
 trigger:
   batch: true
   branches:
     include:
-    - master
+    - main
 
 resources:
   repositories:
