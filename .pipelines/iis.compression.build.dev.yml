@@ -19,7 +19,7 @@ resources:
 jobs:
 - template: .azure\templates\build.yml@MicrosoftIISCommon
   parameters:
-    agentPoolName: 'VSEngSS-MicroBuild2019-1ES'
+    agentPoolName: 'VSEngSS-MicroBuild2022-1ES'
     solution: '**\Compression.sln'
     restoreSolution: 'Compression.sln;IIS-Setup/IIS-Setup.sln'
     productMajor: 1
