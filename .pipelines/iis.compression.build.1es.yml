@@ -128,7 +128,7 @@ extends:
               }
               Write-Host "$("##vso[task.setvariable variable=MsbuildArgs]") $($MsbuildArgs)"
               Write-Host "MsbuildArgs: $($MsbuildArgs)"
-          - task: VSBuild@1
+        - task: VSBuild@1
           displayName: 'Build x86'
           inputs:
             solution: $(Solution)
