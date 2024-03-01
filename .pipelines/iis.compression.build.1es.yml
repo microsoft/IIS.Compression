@@ -109,26 +109,26 @@ extends:
           inputs:
             targetType: inline
             script: |
-            $MsbuildArgsDict =
+              $MsbuildArgsDict =
               @{
-                  "PRODUCT_MAJOR" = $env:PRODUCTMAJOR;
-                  "PRODUCT_MINOR" = $env:PRODUCTMINOR;
-                  "BUILD_MAJOR" = $env:BUILDMAJOR;
-                  "BUILD_MINOR" = $env:BUILDMINOR;
-                  "SignType" = $env:SIGNTYPE;
-                  "SigningIdentity" = $env:SIGNINGIDENTITY;
+                    "PRODUCT_MAJOR" = $env:PRODUCTMAJOR;
+                    "PRODUCT_MINOR" = $env:PRODUCTMINOR;
+                    "BUILD_MAJOR" = $env:BUILDMAJOR;
+                    "BUILD_MINOR" = $env:BUILDMINOR;
+                    "SignType" = $env:SIGNTYPE;
+                    "SigningIdentity" = $env:SIGNINGIDENTITY;
               };
-            $MsbuildArgs = ""
-            foreach ($key in $MsbuildArgsDict.Keys)
-            {
-                  if (![string]::IsNullOrEmpty($MsbuildArgsDict[$key]))
-                  {
-                      $MsbuildArgs += "/p:$($key)=$($MsbuildArgsDict[$key]) "
-                  }
-            }
-            Write-Host "$("##vso[task.setvariable variable=MsbuildArgs]") $($MsbuildArgs)"
-            Write-Host "MsbuildArgs: $($MsbuildArgs)"
-        - task: VSBuild@1
+              $MsbuildArgs = ""
+              foreach ($key in $MsbuildArgsDict.Keys)
+              {
+                    if (![string]::IsNullOrEmpty($MsbuildArgsDict[$key]))
+                    {
+                        $MsbuildArgs += "/p:$($key)=$($MsbuildArgsDict[$key]) "
+                    }
+              }
+              Write-Host "$("##vso[task.setvariable variable=MsbuildArgs]") $($MsbuildArgs)"
+              Write-Host "MsbuildArgs: $($MsbuildArgs)"
+          - task: VSBuild@1
           displayName: 'Build x86'
           inputs:
             solution: $(Solution)
