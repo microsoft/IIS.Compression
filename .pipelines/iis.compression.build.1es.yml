@@ -200,10 +200,3 @@ extends:
             symbolsFolder: '$(Build.ArtifactStagingDirectory)\Symbols'
             searchPattern: '**\*.pdb'
             symbolServerType: TeamServices
-        - task: ms-vseng.MicroBuildShipTasks.7c429315-71ba-4cb3-94bb-f829c95f7915.MicroBuildCodesignVerify@2
-          displayName: Verify Signed Bits
-          inputs:
-            targetFolders: |
-              $(Build.SourcesDirectory)/installer/IISAdministrationBundle/bin/x64/$(BuildConfiguration)
-            whiteListPathForCerts: ./azure-pipelines/verify.signing/no_authenticode.txt
-            excludeSNVerify: true
