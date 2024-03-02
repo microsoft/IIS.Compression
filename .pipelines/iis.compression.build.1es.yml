@@ -200,13 +200,6 @@ extends:
             symbolsFolder: '$(Build.ArtifactStagingDirectory)\Symbols'
             searchPattern: '**\*.pdb'
             symbolServerType: TeamServices
-        - task: PublishSymbols@2
-          name: PublishSymbols8
-          displayName: Index & Publish Symbols
-          inputs:
-            symbolsFolder: $(Build.SourcesDirectory)/dist/symbols
-            searchPattern: '*.pdb'
-            symbolServerType: TeamServices
         - task: ms-vseng.MicroBuildShipTasks.7c429315-71ba-4cb3-94bb-f829c95f7915.MicroBuildCodesignVerify@2
           displayName: Verify Signed Bits
           inputs:
