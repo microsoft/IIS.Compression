@@ -3,10 +3,9 @@ pr: none
 trigger: none
 resources:
   repositories:
-    - repository: MicrosoftIISCommon
-      type: github
-      name: Microsoft/IIS.Common
-      endpoint: IIS-Github
+    - repository: self
+      type: git
+      ref: refs/heads/main
     - repository: MicroBuildTemplate
       type: git
       name: 1ESPipelineTemplates/MicroBuildTemplate
@@ -76,20 +75,19 @@ extends:
             targetPath: '$(Build.ArtifactStagingDirectory)\Sources'
             artifactName: Sources
         steps:
-        - checkout: MicrosoftIISCommon
+        - checkout: self
           fetchTags: false
           persistCredentials: True
           clean: true
           submodules: recursive
-        - ${{ if eq($(PublishArtifactSources), 'true') }}:
-          - task: CopyFiles@2
-            displayName: 'Copy Sources'
-            inputs:
-            SourceFolder: '$(Build.SourcesDirectory)'
-            Contents: |
+        - task: CopyFiles@2
+          displayName: 'Copy Sources'
+          inputs:
+            sourceFolder: '$(Build.SourcesDirectory)'
+            contents: |
               **
               !.git\**\*
-            TargetFolder: '$(Build.ArtifactStagingDirectory)\Sources'
+            targetFolder: '$(Build.ArtifactStagingDirectory)\Sources'
         - task: NuGetToolInstaller@1
           displayName: 'Install NuGet Tool'
           inputs:
@@ -98,10 +96,7 @@ extends:
           displayName: 'NuGet restore'
           inputs:
             command: 'restore'
-            ${{ if ne( $(RestoreSolution), '' ) }}:
-              restoreSolution: $(RestoreSolution)
-            ${{ else }}:
-              restoreSolution: $(Solution)
+            restoreSolution: $(RestoreSolution)
             feedsToUse: config
             nugetConfigPath: NuGet.config
         - task: PowerShell@2
@@ -128,7 +123,7 @@ extends:
               }
               Write-Host "$("##vso[task.setvariable variable=MsbuildArgs]") $($MsbuildArgs)"
               Write-Host "MsbuildArgs: $($MsbuildArgs)"
-          - task: VSBuild@1
+        - task: VSBuild@1
           displayName: 'Build x86'
           inputs:
             solution: $(Solution)
@@ -219,5 +214,3 @@ extends:
               $(Build.SourcesDirectory)/installer/IISAdministrationBundle/bin/x64/$(BuildConfiguration)
             whiteListPathForCerts: ./azure-pipelines/verify.signing/no_authenticode.txt
             excludeSNVerify: true
-
-
