@@ -18,7 +18,7 @@ variables:
   BuildMajor: ''
   BuildMinor: ''
   TeamName: 'IIS'
-  SignType: 'test'
+  SignType: 'Real'
   SigningIdentity: 'Microsoft400'
   indexSourcesAndPublishSymbols: 'true'
   publishArtifactInstallers: 'true'
