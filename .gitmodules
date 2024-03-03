@@ -6,7 +6,7 @@
 	url = https://github.com/Microsoft/IIS.Setup.git
 [submodule "submodules/zlib"]
 	path = submodules/zlib
-	url = https://github.com/madler/zlib.git
+	url = https://github.com/yaqiyang/zlib.git
 [submodule "submodules/brotli"]
 	path = submodules/brotli
 	url = https://github.com/google/brotli.git
