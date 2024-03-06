@@ -34,7 +34,7 @@ parameters:
   default: '$(Build.SourcesDirectory)\IIS-Common\.azure\templates\no_authenticode.txt'
 - name: whiteListPathForStrongNameSign
   type: string
-  default: ''
+  default: ' '
 - name: teamName
   type: string
   default: 'IIS.Compression'
