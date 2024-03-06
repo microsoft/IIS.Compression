@@ -16,10 +16,10 @@ parameters:
   default: 0
 - name: buildMajor
   type: string
-  default: ' '
+  default: '0'
 - name: buildMinor
   type: string
-  default: ' '
+  default: '0'
 - name: indexSourcesAndPublishSymbols
   type: string
   default: 'true'
