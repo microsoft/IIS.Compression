@@ -16,7 +16,7 @@ parameters:
   default: 0
 - name: buildMajor
   type: string
-  default: ''
+  default: ' '
 - name: buildMinor
   type: string
   default: ' '
