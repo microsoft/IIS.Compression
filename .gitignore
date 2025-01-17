@@ -27,6 +27,7 @@ project.lock.json
 *.bin
 *.vs/
 **/*.log
+**/*.binlog
 .testPublish/
 
 *.obj
