@@ -77,6 +77,9 @@
     <IncludePath>$(ProjectDir)include;$(ProjectDir)GeneratedFiles;$(IIS-Common)version;$(IIS-Common)Include;$(WindowsSDK_IncludePath);$(IncludePath);</IncludePath>
     <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Platform)'=='ARM64EC'">
+    <BuildAsX>true</BuildAsX>
+  </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
       <TreatWarningAsError>true</TreatWarningAsError>
