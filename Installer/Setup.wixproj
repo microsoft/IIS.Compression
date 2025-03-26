@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <Import Project="$(ProjectDir)..\build\submodule.props" Condition="Exists('$(ProjectDir)..\build\submodule.props')" />
   <Import Project="$(IIS-Common)build\settings.props" Condition="Exists('$(IIS-Common)build\settings.props')" />
   <Import Project="$(IIS-Common)build\versions.props" Condition="Exists('$(IIS-Common)build\versions.props')" />
@@ -20,6 +21,10 @@
     <OutputName>iiscompression_amd64</OutputName>
     <InstallerPlatform>x64</InstallerPlatform>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'ARM64' ">
+    <OutputName>iiscompression_arm64</OutputName>
+    <InstallerPlatform>arm64</InstallerPlatform>
+  </PropertyGroup>
   <PropertyGroup Condition=" '$(SignType)' != '' ">
     <SignOutput>True</SignOutput>
   </PropertyGroup>
@@ -29,6 +34,9 @@
     <OutDir>$(OutputPath)</OutDir>
     <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
     <IncludeSearchPaths>$(IncludeSearchPaths);$(IntermediateOutputPath);$(IIS-Setup)</IncludeSearchPaths>
+    <NeutralBinRoot Condition="'$(NeutralBinRoot)' == ''">$(RepositoryRoot)bin\$(Configuration)\$(Platform)</NeutralBinRoot>
+    <NeutralWOW64BinRoot Condition="'$(NeutralWOW64BinRoot)' == ''">$(RepositoryRoot)bin\$(Configuration)\x86\</NeutralWOW64BinRoot>
+    <DefineConstants>$(DefineConstants);NeutralWOW64BinRoot=$(NeutralWOW64BinRoot);NeutralBinRoot=$(NeutralBinRoot)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DefineConstants>Debug;$(DefineConstants)</DefineConstants>
@@ -92,5 +100,4 @@
     <Error Condition="!Exists('..\packages\microsoft.visualstudioeng.microbuild.core.$(MicroBuildVersion)\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\microsoft.visualstudioeng.microbuild.core.$(MicroBuildVersion)\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets'))" />
   </Target>
   <Import Project="..\packages\microsoft.visualstudioeng.microbuild.core.$(MicroBuildVersion)\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets" Condition="Exists('..\packages\microsoft.visualstudioeng.microbuild.core.$(MicroBuildVersion)\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets')" />
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
 </Project>

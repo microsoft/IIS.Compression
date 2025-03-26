@@ -180,6 +180,16 @@ extends:
             configuration: $(buildConfiguration)
             clean: true
             msbuildArchitecture: x64
+        - task: VSBuild@1
+          displayName: 'Build ARM64'
+          inputs:
+            solution: ${{ parameters.solution }}
+            vsVersion: 15.0
+            msbuildArgs: $(MsbuildArgs)
+            platform: arm64
+            configuration: $(buildConfiguration)
+            clean: true
+            msbuildArchitecture: x64
         - task: CopyFiles@2
           displayName: 'Copy Binaries x86'
           inputs:
@@ -197,6 +207,14 @@ extends:
               **\*.exe
             targetFolder: '$(Build.ArtifactStagingDirectory)\Binaries\x64'
         - task: CopyFiles@2
+          displayName: 'Copy Binaries ARM64'
+          inputs:
+            sourceFolder: '$(Build.SourcesDirectory)\bin\$(buildConfiguration)\arm64'
+            contents: |
+              **\*.dll
+              **\*.exe
+            targetFolder: '$(Build.ArtifactStagingDirectory)\Binaries\arm64'
+        - task: CopyFiles@2
           displayName: 'Copy Symbols x86'
           inputs:
             sourceFolder: '$(Build.SourcesDirectory)'
@@ -208,6 +226,12 @@ extends:
             sourceFolder: '$(Build.SourcesDirectory)'
             contents: '**\x64\**\*pdb'
             targetFolder: '$(Build.ArtifactStagingDirectory)\Symbols\x64'
+        - task: CopyFiles@2
+          displayName: 'Copy Symbols ARM64'
+          inputs:
+            sourceFolder: '$(Build.SourcesDirectory)'
+            contents: '**\bin\**\arm64\**\*pdb'
+            targetFolder: '$(Build.ArtifactStagingDirectory)\Symbols\arm64'
         - ${{ if eq(parameters.publishArtifactInstallers, 'true') }}:
           - task: CopyFiles@2
             displayName: 'Copy Installers x86'
@@ -221,6 +245,12 @@ extends:
               sourceFolder: '$(Build.SourcesDirectory)\bin\$(buildConfiguration)\x64'
               contents: '**\*.msi'
               targetFolder: '$(Build.ArtifactStagingDirectory)\Installers\x64'
+          - task: CopyFiles@2
+            displayName: 'Copy Installers ARM64'
+            inputs:
+              sourceFolder: '$(Build.SourcesDirectory)\bin\$(buildConfiguration)\arm64'
+              contents: '**\*.msi'
+              targetFolder: '$(Build.ArtifactStagingDirectory)\Installers\arm64'
         - task: ms-vseng.MicroBuildShipTasks.7c429315-71ba-4cb3-94bb-f829c95f7915.MicroBuildCodesignVerify@2
           displayName: 'Verify Signed Binaries'
           inputs:
