@@ -41,6 +41,7 @@
     <ClCompile Include="$(SubmoduleBrotli)\c\common\context.c" />
     <ClCompile Include="$(SubmoduleBrotli)\c\common\dictionary.c" />
     <ClCompile Include="$(SubmoduleBrotli)\c\common\platform.c" />
+    <ClCompile Include="$(SubmoduleBrotli)\c\common\shared_dictionary.c" />
     <ClCompile Include="$(SubmoduleBrotli)\c\common\transform.c" />
     <ClCompile Include="$(SubmoduleBrotli)\c\dec\bit_reader.c" />
     <ClCompile Include="$(SubmoduleBrotli)\c\dec\decode.c" />
@@ -55,6 +56,7 @@
     <ClCompile Include="$(SubmoduleBrotli)\c\enc\command.c" />
     <ClCompile Include="$(SubmoduleBrotli)\c\enc\compress_fragment.c" />
     <ClCompile Include="$(SubmoduleBrotli)\c\enc\compress_fragment_two_pass.c" />
+    <ClCompile Include="$(SubmoduleBrotli)\c\enc\compound_dictionary.c" />
     <ClCompile Include="$(SubmoduleBrotli)\c\enc\dictionary_hash.c" />
     <ClCompile Include="$(SubmoduleBrotli)\c\enc\encode.c" />
     <ClCompile Include="$(SubmoduleBrotli)\c\enc\encoder_dict.c" />

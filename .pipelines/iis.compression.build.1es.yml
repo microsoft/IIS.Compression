@@ -186,7 +186,7 @@ extends:
             solution: ${{ parameters.solution }}
             vsVersion: 15.0
             msbuildArgs: $(MsbuildArgs)
-            platform: arm64
+            platform: arm64ec
             configuration: $(buildConfiguration)
             clean: true
             msbuildArchitecture: x64
