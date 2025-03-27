@@ -142,7 +142,7 @@
       <SupportJustMyCode Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">false</SupportJustMyCode>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(VC_ReferencesPath_x64);$(WindowsSDK_LibraryPath)\$(PlatformTarget);$(WixLibPath)x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(VC_ReferencesPath_ARM64EC);$(WindowsSDK_LibraryPath)\$(PlatformTarget);$(WixLibPath)x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">DebugFull</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -152,7 +152,7 @@
       <SupportJustMyCode Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">false</SupportJustMyCode>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(VC_ReferencesPath_x64);$(WindowsSDK_LibraryPath)\$(PlatformTarget);$(WixLibPath)x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(VC_ReferencesPath_ARM64);$(WindowsSDK_LibraryPath)\$(PlatformTarget);$(WixLibPath)x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">DebugFull</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>

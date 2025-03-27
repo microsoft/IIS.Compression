@@ -73,6 +73,13 @@
     </Condition>
     <?endif ?>
 
+    <!-- prevent install of 64-bit product on ARM64 machine -->
+    <?if $(var.Platform) = "x64" ?>
+    <Condition Message="!(loc.LaunchCondition_ARM64)">
+      <![CDATA[(Installed And NOT PATCH) Or (PROCESSORARCHITECTURE ~<> "ARM64")]]>
+    </Condition>
+    <?endif ?>
+
     <!-- Per machine only if administrator, per user if no administrator -->
     <Property Id="ALLUSERS">2</Property>
 
@@ -98,7 +105,7 @@
             <Component Id="IisZlib" Guid="B60CA37C-79E9-4ECF-BDF2-1EA3504D3A83" Win64="$(var.IsWin64)">
               <File Id="IisZlibDll"
                     Name="iiszlib.dll"
-                    Source="$(var.IisCompressionRoot)bin\$(var.Configuration)\$(var.Platform)\iiszlib.dll"
+                    Source="$(var.NeutralBinRoot)\iiszlib.dll"
                     DiskId="1"
                     Vital="yes"
                     KeyPath="yes" />
@@ -110,7 +117,7 @@
             <Component Id="IisBrotli" Guid="3C2A0748-058E-46DB-B8C8-F1FF3BFB4C42" Win64="$(var.IsWin64)">
               <File Id="IisBrotliDll"
                     Name="iisbrotli.dll"
-                    Source="$(var.IisCompressionRoot)bin\$(var.Configuration)\$(var.Platform)\iisbrotli.dll"
+                    Source="$(var.NeutralBinRoot)\iisbrotli.dll"
                     DiskId="1"
                     Vital="yes" />
               <RegistryKey Root="HKLM" Key="SYSTEM\CurrentControlSet\Services\EventLog\Application\$(var.IISBrotliCompressionScheme)">
@@ -163,7 +170,7 @@
 
       <!-- WOW64 Support -->
 
-      <?if $(var.Platform) = "x64" ?>
+      <?if $(var.IsWin64)=yes ?>
 
       <Directory Id="ProgramFilesFolder">
         <Directory Id="IISModuleDirectory32" Name="IIS">
@@ -171,14 +178,14 @@
             <Component Id="IisZlib32" Guid="FBDB630C-D614-4523-910E-257E41E5F83D" Win64="no">
               <File Id="IisZlibDll32"
                     Name="iiszlib.dll"
-                    Source="$(var.IisCompressionRoot)bin\$(var.Configuration)\x86\iiszlib.dll"
+                    Source="$(var.NeutralWOW64BinRoot)\iiszlib.dll"
                     DiskId="1"
                     Vital="yes" />
             </Component>
             <Component Id="IisBrotli32" Guid="72A086DB-7D00-466D-81A1-84D07388E023" Win64="no">
               <File Id="IisBrotliDll32"
                     Name="iisbrotli.dll"
-                    Source="$(var.IisCompressionRoot)bin\$(var.Configuration)\x86\iisbrotli.dll"
+                    Source="$(var.NeutralWOW64BinRoot)\iisbrotli.dll"
                     DiskId="1"
                     Vital="yes" />
             </Component>
@@ -214,7 +221,7 @@
       <ComponentRef Id="ThirdPartyNotices"/>
       <ComponentRef Id="Readme"/>
       <ComponentRef Id="DiscoverabilityKey"/>
-      <?if $(var.Platform)= "x64" ?>
+      <?if $(var.IsWin64)=yes ?>
       <ComponentRef Id="IisZlib32"/>
       <ComponentRef Id="IisBrotli32"/>
       <ComponentRef Id="DiscoverabilityKeyWow"/>
