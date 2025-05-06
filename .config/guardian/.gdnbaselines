@@ -11,6 +11,19 @@
     }
   },
   "results": {
+    "e37031ee79362c9ff0735013edbeb833842bd30450c977d39d271f9d74c2c6a8": {
+      "signature": "e37031ee79362c9ff0735013edbeb833842bd30450c977d39d271f9d74c2c6a8",
+      "alternativeSignatures": [
+        "822d02459337aa61460710bc478bfa54f80107394b9a6e80edf431d87dd1a2f1"
+      ],
+      "target": "Binaries/arm64/iiszlib.dll",
+      "memberOf": [
+        "default"
+      ],
+      "tool": "binskim",
+      "ruleId": "BA2007",
+      "createdDate": "2025-05-06 20:48:52Z"
+    },
     "8512889e3c4bfacec9c388518a64474bbb56443c73dfc158b935463bd1a46848": {
       "signature": "8512889e3c4bfacec9c388518a64474bbb56443c73dfc158b935463bd1a46848",
       "alternativeSignatures": [
