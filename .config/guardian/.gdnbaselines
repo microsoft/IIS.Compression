@@ -1,0 +1,225 @@
+{
+  "properties": {
+    "helpUri": "https://eng.ms/docs/microsoft-security/security/azure-security/cloudai-security-fundamentals-engineering/security-integration/guardian-wiki/microsoft-guardian/general/baselines"
+  },
+  "version": "1.0.0",
+  "baselines": {
+    "default": {
+      "name": "default",
+      "createdDate": "2025-02-13 01:00:18Z",
+      "lastUpdatedDate": "2025-02-13 01:00:18Z"
+    }
+  },
+  "results": {
+    "8512889e3c4bfacec9c388518a64474bbb56443c73dfc158b935463bd1a46848": {
+      "signature": "8512889e3c4bfacec9c388518a64474bbb56443c73dfc158b935463bd1a46848",
+      "alternativeSignatures": [
+        "59a1005be0e80fa93deecbbdbf152e8e75233fe2ec3483eec6008c64fdf8e194"
+      ],
+      "target": "Binaries/x64/iiszlib.dll",
+      "memberOf": [
+        "default"
+      ],
+      "tool": "binskim",
+      "ruleId": "BA2007",
+      "createdDate": "2025-02-13 01:00:18Z",
+      "expirationDate": "2025-08-02 01:05:30Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2025-02-13 01:05:30Z"
+    },
+    "66454d10288e2b2c2ab0ad564bd49c0db70b63c83a2d4688ec5984a5df9f193a": {
+      "signature": "66454d10288e2b2c2ab0ad564bd49c0db70b63c83a2d4688ec5984a5df9f193a",
+      "alternativeSignatures": [
+        "e653e764969c0e6420979849cf3610a7e8395b15dfaf2fe11fb12c9b03adbdad"
+      ],
+      "target": "Binaries/x86/iiszlib.dll",
+      "memberOf": [
+        "default"
+      ],
+      "tool": "binskim",
+      "ruleId": "BA2007",
+      "createdDate": "2025-02-13 01:00:18Z",
+      "expirationDate": "2025-08-02 01:05:30Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2025-02-13 01:05:30Z"
+    },
+    "f6b430782fbc2806394a18df637061429eebf9af69b8408c2498948b95fd1d6f": {
+      "signature": "f6b430782fbc2806394a18df637061429eebf9af69b8408c2498948b95fd1d6f",
+      "alternativeSignatures": [
+        "637521c854de8234d1832945abab6b0e436d3eafc02cbbc20360a1a4b4a13f85"
+      ],
+      "target": "Sources/IIS-Common/Managed/References/v7Sp1/Microsoft.Web.administration.dll",
+      "memberOf": [
+        "default"
+      ],
+      "tool": "binskim",
+      "ruleId": "BA2009",
+      "createdDate": "2025-02-13 01:03:51Z",
+      "expirationDate": "2025-08-02 01:05:30Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2025-02-13 01:05:30Z"
+    },
+    "b4dbb25b34967ae5ab0ae57f47be8b8d4bc85f35a22a9245642356542819bf9d": {
+      "signature": "b4dbb25b34967ae5ab0ae57f47be8b8d4bc85f35a22a9245642356542819bf9d",
+      "alternativeSignatures": [
+        "3af61c2964a083e60f189df73d9ba69fdd2698f045084b2ea59dbc9be263050d"
+      ],
+      "target": "Sources/IIS-Common/Managed/References/v7Sp1/Microsoft.Web.administration.dll",
+      "memberOf": [
+        "default"
+      ],
+      "tool": "binskim",
+      "ruleId": "BA2016",
+      "createdDate": "2025-02-13 01:03:51Z",
+      "expirationDate": "2025-08-02 01:05:30Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2025-02-13 01:05:30Z"
+    },
+    "142d82423b56bfff9304ce7a055dde1466b07538afcb6796998cc8284cc32aad": {
+      "signature": "142d82423b56bfff9304ce7a055dde1466b07538afcb6796998cc8284cc32aad",
+      "alternativeSignatures": [
+        "e7c4d03544e21daf7e2f1ec3bbd2f72acf80c5e46896d439b5017cceba47999d"
+      ],
+      "target": "Sources/IIS-Common/Managed/References/v7Sp1/Microsoft.Web.management.dll",
+      "memberOf": [
+        "default"
+      ],
+      "tool": "binskim",
+      "ruleId": "BA2009",
+      "createdDate": "2025-02-13 01:03:51Z",
+      "expirationDate": "2025-08-02 01:05:30Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2025-02-13 01:05:30Z"
+    },
+    "2b43dcf81fcf9a3a3775a02ac2da45ed7e1b4b25a7be7ca77eb8c4329ce81f1a": {
+      "signature": "2b43dcf81fcf9a3a3775a02ac2da45ed7e1b4b25a7be7ca77eb8c4329ce81f1a",
+      "alternativeSignatures": [
+        "3f6f4803523b60894bcbbc745d43c82825eaaf10dcbcd255867295793714b09f"
+      ],
+      "target": "Sources/IIS-Common/Managed/References/v7Sp1/Microsoft.Web.management.dll",
+      "memberOf": [
+        "default"
+      ],
+      "tool": "binskim",
+      "ruleId": "BA2016",
+      "createdDate": "2025-02-13 01:03:51Z",
+      "expirationDate": "2025-08-02 01:05:30Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2025-02-13 01:05:30Z"
+    },
+    "d4a3b367fc7d906a5403e23374175d34924128437f2a398ca09aa0d98d9a80e5": {
+      "signature": "d4a3b367fc7d906a5403e23374175d34924128437f2a398ca09aa0d98d9a80e5",
+      "alternativeSignatures": [
+        "f7994281b8a70894438561f9aa19bf3efe7af50bc0b1a7b0e2b677a3475b7fa1"
+      ],
+      "target": "Sources/IIS-Common/tools/mof2trace/amd64fre/mof2trace.exe",
+      "memberOf": [
+        "default"
+      ],
+      "tool": "binskim",
+      "ruleId": "BA2010",
+      "createdDate": "2025-02-13 01:03:51Z",
+      "expirationDate": "2025-08-02 01:05:30Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2025-02-13 01:05:30Z"
+    },
+    "d976d0c6ec31f8e48eec3f1f2590ca25b638cf275bb65c120cb718204e701426": {
+      "signature": "d976d0c6ec31f8e48eec3f1f2590ca25b638cf275bb65c120cb718204e701426",
+      "alternativeSignatures": [
+        "08f4a84105725a4b9f3b47a0a2ea1c58f935afba70f729c78d1d02441348bcb8"
+      ],
+      "target": "Sources/IIS-Common/tools/mof2trace/x86fre/mof2trace.exe",
+      "memberOf": [
+        "default"
+      ],
+      "tool": "binskim",
+      "ruleId": "BA2010",
+      "createdDate": "2025-02-13 01:03:51Z",
+      "expirationDate": "2025-08-02 01:05:30Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2025-02-13 01:05:30Z"
+    },
+    "698fef2bb40721c880a17702b0340d1a1c8af219a7485c7034322d28715096e1": {
+      "signature": "698fef2bb40721c880a17702b0340d1a1c8af219a7485c7034322d28715096e1",
+      "alternativeSignatures": [
+        "e7dbee8575cbf08168750f3bbb62b01d79cb216a02e0c367a8944c2bcea66c88"
+      ],
+      "target": "Sources/IIS-Setup/IIS-Common/Managed/References/v7Sp1/Microsoft.Web.administration.dll",
+      "memberOf": [
+        "default"
+      ],
+      "tool": "binskim",
+      "ruleId": "BA2009",
+      "createdDate": "2025-02-13 01:03:51Z",
+      "expirationDate": "2025-08-02 01:05:30Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2025-02-13 01:05:30Z"
+    },
+    "349ab50e57a8aa29a986f4e8b74146257629e25456d9f6a64d7b39329fdc1a2b": {
+      "signature": "349ab50e57a8aa29a986f4e8b74146257629e25456d9f6a64d7b39329fdc1a2b",
+      "alternativeSignatures": [
+        "06bec7e330b9097f7a81af7cf7ab95bfc91ff1ea496d02ef97f8644608c97592"
+      ],
+      "target": "Sources/IIS-Setup/IIS-Common/Managed/References/v7Sp1/Microsoft.Web.administration.dll",
+      "memberOf": [
+        "default"
+      ],
+      "tool": "binskim",
+      "ruleId": "BA2016",
+      "createdDate": "2025-02-13 01:03:51Z",
+      "expirationDate": "2025-08-02 01:05:30Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2025-02-13 01:05:30Z"
+    },
+    "7b715daaceb0500038d273e791a11b88d2c3904f289ffc935cd96736989a68fc": {
+      "signature": "7b715daaceb0500038d273e791a11b88d2c3904f289ffc935cd96736989a68fc",
+      "alternativeSignatures": [
+        "ac77235f5d2490debb1530316df6d319e46d75aaff811dc4896d314a85d8058f"
+      ],
+      "target": "Sources/IIS-Setup/IIS-Common/Managed/References/v7Sp1/Microsoft.Web.management.dll",
+      "memberOf": [
+        "default"
+      ],
+      "tool": "binskim",
+      "ruleId": "BA2009",
+      "createdDate": "2025-02-13 01:03:51Z",
+      "expirationDate": "2025-08-02 01:05:30Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2025-02-13 01:05:30Z"
+    },
+    "ef9e8a007b57d0b1dd3dc0fa18f4bf81fe52d3bcf929ce9dff314704f1041885": {
+      "signature": "ef9e8a007b57d0b1dd3dc0fa18f4bf81fe52d3bcf929ce9dff314704f1041885",
+      "alternativeSignatures": [
+        "aa76558afe30036a5103bedef031a9c5fe6ef8b32100a32efeb61fdce6dca424"
+      ],
+      "target": "Sources/IIS-Setup/IIS-Common/Managed/References/v7Sp1/Microsoft.Web.management.dll",
+      "memberOf": [
+        "default"
+      ],
+      "tool": "binskim",
+      "ruleId": "BA2016",
+      "createdDate": "2025-02-13 01:03:51Z",
+      "expirationDate": "2025-08-02 01:05:30Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2025-02-13 01:05:30Z"
+    },
+    "2bddce988f50cfacea3df8ab3ac47c1118c3af84c531fce39f50c1fc7bc59add": {
+      "signature": "2bddce988f50cfacea3df8ab3ac47c1118c3af84c531fce39f50c1fc7bc59add",
+      "alternativeSignatures": [
+        "1a6412f0a821a7a0bcb8c1a25345f1166c8f5c5a808a7080609ab5f6dc66205b"
+      ],
+      "target": "Sources/IIS-Setup/IIS-Common/tools/mof2trace/amd64fre/mof2trace.exe",
+      "memberOf": [
+        "default"
+      ],
+      "tool": "binskim",
+      "ruleId": "BA2010",
+      "createdDate": "2025-02-13 01:03:51Z",
+      "expirationDate": "2025-08-02 01:05:30Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2025-02-13 01:05:30Z"
+    },
+    "a67df0b4e70e5a60add1a9f64b820571ee4b5a5ea277f07aed63d32ceb4764e8": {
+      "signature": "a67df0b4e70e5a60add1a9f64b820571ee4b5a5ea277f07aed63d32ceb4764e8",
+      "alternativeSignatures": [
+        "d0426084b147fd570ff98d924d1f5d59a6bb5672b8c16f219953b0e96a74ec02"
+      ],
+      "target": "Sources/IIS-Setup/IIS-Common/tools/mof2trace/x86fre/mof2trace.exe",
+      "memberOf": [
+        "default"
+      ],
+      "tool": "binskim",
+      "ruleId": "BA2010",
+      "createdDate": "2025-02-13 01:03:51Z",
+      "expirationDate": "2025-08-02 01:05:30Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2025-02-13 01:05:30Z"
+    }
+  }
+}
