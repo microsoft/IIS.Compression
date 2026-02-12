@@ -281,3 +281,13 @@ extends:
               symbolsFolder: '$(Build.ArtifactStagingDirectory)\Symbols'
               searchPattern: '**\*.pdb'
               symbolServerType: TeamServices
+        - task: MicroBuildArchiveSymbols@6
+          displayName: 'Upload Symbols to Symweb/MSDL'
+          condition: eq(variables['SignType'], 'real')
+          inputs:
+            azureSubscription: 'VSEng-SymbolsUpload'     # SERVICE CONNECTION
+            SymbolsFeatureName: 'IIS-Compression'
+            SymbolsProject: 'DDE'
+            SymbolsAgentPath: '$(Build.ArtifactStagingDirectory)\symbols'
+          env:
+            SYSTEM_ACCESSTOKEN: $(System.AccessToken)
