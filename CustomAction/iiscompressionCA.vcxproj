@@ -99,7 +99,6 @@
     <ClCompile>
       <AdditionalIncludeDirectories>$(IIS-Setup)iisca\lib;$(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <WarningLevel>Level3</WarningLevel>
-      <DisableSpecificWarnings>4091</DisableSpecificWarnings>
       <AdditionalOptions>/guard:cast /d2CastGuardFailureMode:fastfail /GL %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
