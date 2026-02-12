@@ -99,7 +99,7 @@
     <ClCompile>
       <AdditionalIncludeDirectories>$(IIS-Setup)iisca\lib;$(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <WarningLevel>Level3</WarningLevel>
-      <DisableSpecificWarnings>4091;5068;5065</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4091</DisableSpecificWarnings>
       <AdditionalOptions>/guard:cast /d2CastGuardFailureMode:fastfail /GL %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
@@ -107,6 +107,7 @@
       <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
       <SubSystem>Windows</SubSystem>
       <LinkIncremental>false</LinkIncremental>
+      <AdditionalOptions>/LTCG %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">

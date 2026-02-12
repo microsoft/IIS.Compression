@@ -83,7 +83,7 @@
   <ItemDefinitionGroup>
     <ClCompile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <DisableSpecificWarnings>4091;5068;5065</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4091</DisableSpecificWarnings>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)\IIS-Common\Include;$(SubmoduleBrotli)\c\include;$(SubmoduleBrotli)\c\include\brotli;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)\IIS-Common\Include;$(SubmoduleBrotli)\c\include;$(SubmoduleBrotli)\c\include\brotli;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)\IIS-Common\Include;$(SubmoduleBrotli)\c\include;$(SubmoduleBrotli)\c\include\brotli;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -102,6 +102,7 @@
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>iisbrotli.def</ModuleDefinitionFile>
       <LinkIncremental>false</LinkIncremental>
+      <AdditionalOptions>/LTCG %(AdditionalOptions)</AdditionalOptions>
       <GenerateDebugInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">DebugFull</GenerateDebugInformation>
       <GenerateDebugInformation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">DebugFull</GenerateDebugInformation>
       <GenerateDebugInformation Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">DebugFull</GenerateDebugInformation>
