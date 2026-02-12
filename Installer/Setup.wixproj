@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.WixToolset.Sdk/5.0.2-dotnet.2861676">
   <Import Project="$(ProjectDir)..\build\submodule.props" Condition="Exists('$(ProjectDir)..\build\submodule.props')" />
   <Import Project="$(IIS-Common)build\settings.props" Condition="Exists('$(IIS-Common)build\settings.props')" />
   <Import Project="$(IIS-Common)build\versions.props" Condition="Exists('$(IIS-Common)build\versions.props')" />
   <Import Project="$(IIS-Setup)build\wix-versions.props" Condition="Exists('$(IIS-Setup)build\wix-versions.props')" />
   <Import Project="$(IIS-Common)build\sign.props" Condition="Exists('$(IIS-Common)build\sign.props')" />
-  <Import Project="..\packages\WiX.3.14.1\build\wix.props" Condition="Exists('..\packages\WiX.3.14.1\build\wix.props')" />
   <PropertyGroup>
-    <ProductVersion>3.10</ProductVersion>
     <ProjectGuid>1ABF68C6-4E3D-4C36-AB9E-3AD64F9FD744</ProjectGuid>
-    <SchemaVersion>2.0</SchemaVersion>
     <OutputType>Package</OutputType>
+    <SuppressValidation>true</SuppressValidation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'x86' Or '$(Platform)' == '' ">
     <OutputName>iiscompression_x86</OutputName>
@@ -29,11 +26,10 @@
     <SignOutput>True</SignOutput>
   </PropertyGroup>
   <PropertyGroup>
-    <WixVariables>Platform=($Platform);$(WixVariables);</WixVariables>
     <OutputPath>$(SolutionDir)bin\$(Configuration)\$(Platform)\</OutputPath>
     <OutDir>$(OutputPath)</OutDir>
     <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
-    <IncludeSearchPaths>$(IncludeSearchPaths);$(IntermediateOutputPath);$(IIS-Setup)</IncludeSearchPaths>
+    <AdditionalIncludePaths>$(IntermediateOutputPath);$(IIS-Setup)</AdditionalIncludePaths>
     <NeutralBinRoot Condition="'$(NeutralBinRoot)' == ''">$(RepositoryRoot)bin\$(Configuration)\$(Platform)</NeutralBinRoot>
     <NeutralWOW64BinRoot Condition="'$(NeutralWOW64BinRoot)' == ''">$(RepositoryRoot)bin\$(Configuration)\x86\</NeutralWOW64BinRoot>
     <DefineConstants>$(DefineConstants);NeutralWOW64BinRoot=$(NeutralWOW64BinRoot);NeutralBinRoot=$(NeutralBinRoot)</DefineConstants>
@@ -42,26 +38,12 @@
     <DefineConstants>Debug;$(DefineConstants)</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="iiscompression.wxs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bitmaps" />
-    <Folder Include="license" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="bitmaps\bannrbmp.bmp" />
     <Content Include="bitmaps\iiscompression.ico" />
     <Content Include="bitmaps\dlgbmp.bmp" />
     <Content Include="iiscompression_readme.htm" />
     <Content Include="license\License.rtf" />
-    <Content Include="packages.config" />
     <Content Include="ThirdPartyNotices.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <WixExtension Include="WixUIExtension">
-      <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
-      <Name>WixUIExtension</Name>
-    </WixExtension>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(IIS-Setup)iisca\wix\setupstrings.wxl">
@@ -78,11 +60,9 @@
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />
-  <Target Name="EnsureWixToolsetInstalled" BeforeTargets="_PrepareForBuild" Condition=" '$(WixTargetsImported)' != 'true' ">
-    <Error Text="The WiX package must be installed to build this project." />
-  </Target>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.WixToolset.UI.wixext"  Version="5.0.2-dotnet.2886158" />
+  </ItemGroup>
   <Target Name="BeforeBuild">
     <CreateProperty Condition="$(IIS-Setup) != ''" Value="IIS-Setup=$(IIS-Setup);$(DefineConstants)">
       <Output TaskParameter="Value" PropertyName="DefineConstants" />

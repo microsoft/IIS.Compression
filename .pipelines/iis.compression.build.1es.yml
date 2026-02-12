@@ -5,9 +5,6 @@ parameters:
 - name: restoreSolution
   type: string
   default: 'Compression.sln;IIS-Setup/IIS-Setup.sln'
-- name: signType
-  type: string
-  default: 'Real'
 - name: productMajor
   type: number
   default: 1
@@ -43,7 +40,11 @@ parameters:
   default: true
 name: $(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.rr)
 pr: none
-trigger: none
+trigger:
+  branches:
+    include:
+    - refs/heads/main
+  batch: True
 resources:
   repositories:
     - repository: self
@@ -59,7 +60,6 @@ variables:
   ProductMinor: ${{ parameters.productMinor }}
   BuildMajor: ${{ parameters.buildMajor }}
   BuildMinor: ${{ parameters.buildMinor }}
-  SignType: ${{ parameters.signType }}
   SigningIdentity: 'Microsoft400'
   CodeQL.Enabled: ${{ parameters.codeQLEnabled }}
   msbuildArgs: '/p:RunWixToolsOutOfProc=true'
@@ -91,7 +91,11 @@ extends:
           mb:
             signing:
               enabled: true
-              signType: $(SignType)
+              ${{ if or(eq(variables['Build.Reason'], 'IndividualCI'), eq(variables['Build.Reason'], 'BatchedCI'), eq(variables['Build.Reason'], 'BuildCompletion')) }}:
+                signType: real
+                signWithProd: true
+              ${{ else }}:
+                signType: test
           outputs:
           - output: pipelineArtifact
             displayName: 'Publish Artifact: Binaries'
@@ -129,6 +133,13 @@ extends:
           displayName: 'Install NuGet Tool'
           inputs:
             versionSpec: '>=4.7.1'
+        - task: NuGetCommand@2            
+          displayName: 'Restore packages.config'
+          inputs:
+            restoreSolution: '$(Build.SourcesDirectory)\iisbrotli\packages.config'
+            feedsToUse: config
+            nugetConfigPath: $(Build.SourcesDirectory)\Nuget.config
+            restoreDirectory: $(Build.SourcesDirectory)\packages            
         - task: NuGetCommand@2
           displayName: 'NuGet restore'
           inputs:
