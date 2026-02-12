@@ -98,8 +98,7 @@
   <ItemDefinitionGroup>
     <ClCompile>
       <AdditionalIncludeDirectories>$(IIS-Setup)iisca\lib;$(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <WarningLevel>Level3</WarningLevel>
-      <AdditionalOptions>/guard:cast /d2CastGuardFailureMode:fastfail /GL %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/W3 /guard:cast /d2CastGuardFailureMode:fastfail /GL %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>httpapi.lib;shlwapi.lib;ahadmin.lib;xmllite.lib;msi.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
