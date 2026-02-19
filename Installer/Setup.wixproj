@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.WixToolset.Sdk/5.0.2-dotnet.2861676">
+<Project Sdk="Microsoft.WixToolset.Sdk/6.0.3-dotnet.3">
   <Import Project="$(ProjectDir)..\build\submodule.props" Condition="Exists('$(ProjectDir)..\build\submodule.props')" />
   <Import Project="$(IIS-Common)build\settings.props" Condition="Exists('$(IIS-Common)build\settings.props')" />
   <Import Project="$(IIS-Common)build\versions.props" Condition="Exists('$(IIS-Common)build\versions.props')" />
@@ -61,7 +61,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.WixToolset.UI.wixext"  Version="5.0.2-dotnet.2886158" />
+    <PackageReference Include="Microsoft.WixToolset.UI.wixext"  Version="6.0.3-dotnet.3" />
   </ItemGroup>
   <Target Name="BeforeBuild">
     <CreateProperty Condition="$(IIS-Setup) != ''" Value="IIS-Setup=$(IIS-Setup);$(DefineConstants)">
