@@ -11,12 +11,12 @@ parameters:
 - name: productMinor
   type: number
   default: 0
-- name: buildMajor
-  type: string
-  default: '0'
-- name: buildMinor
-  type: string
-  default: '0'
+# - name: buildMajor
+#   type: string
+#   default: '0'
+# - name: buildMinor
+#   type: string
+#   default: '0'
 - name: indexSourcesAndPublishSymbols
   type: string
   default: 'true'
@@ -58,8 +58,6 @@ variables:
   TeamName: ${{ parameters.teamName }}
   ProductMajor: ${{ parameters.productMajor }}
   ProductMinor: ${{ parameters.productMinor }}
-  BuildMajor: ${{ parameters.buildMajor }}
-  BuildMinor: ${{ parameters.buildMinor }}
   SigningIdentity: 'Microsoft400'
   CodeQL.Enabled: ${{ parameters.codeQLEnabled }}
   msbuildArgs: '/p:RunWixToolsOutOfProc=true'
@@ -156,8 +154,6 @@ extends:
               @{
                     "PRODUCT_MAJOR" = $env:PRODUCTMAJOR;
                     "PRODUCT_MINOR" = $env:PRODUCTMINOR;
-                    "BUILD_MAJOR" = $env:BUILDMAJOR;
-                    "BUILD_MINOR" = $env:BUILDMINOR;
                     "SignType" = $env:SIGNTYPE;
                     "SigningIdentity" = $env:SIGNINGIDENTITY;
               };
