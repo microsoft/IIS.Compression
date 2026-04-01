@@ -95,19 +95,19 @@
     <OutDir>bin\$(Configuration)\$(PlatformTarget)\</OutDir>
     <IntDir>obj\$(Configuration)\$(PlatformTarget)\</IntDir>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.wixtoolset.dutil"  Version="6.0.3-dotnet.3" />
+    <PackageReference Include="Microsoft.wixtoolset.wcautil"  Version="6.0.3-dotnet.3" />
+  </ItemGroup>
   <ItemDefinitionGroup>
     <ClCompile>
       <AdditionalIncludeDirectories>$(IIS-Setup)iisca\lib;$(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <WarningLevel>Level3</WarningLevel>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalOptions>/guard:cast /d2CastGuardFailureMode:fastfail /GL %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>httpapi.lib;shlwapi.lib;ahadmin.lib;xmllite.lib;msi.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
       <SubSystem>Windows</SubSystem>
-      <LinkIncremental>false</LinkIncremental>
-      <AdditionalOptions>/LTCG /NODEFAULTLIB:LIBCMT.lib %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
@@ -170,4 +170,5 @@
   </Target>
   <Import Project="..\packages\microsoft.visualstudioeng.microbuild.core.$(MicroBuildVersion)\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets" Condition="Exists('..\packages\microsoft.visualstudioeng.microbuild.core.$(MicroBuildVersion)\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets')" />
   <Import Project="$(IIS-Common)build\copy-outputs.targets" Condition="Exists('$(IIS-Common)build\copy-outputs.targets')" />
+  <Target Name="ResolveNuGetPackageAssets" Condition="$([MSBuild]::VersionLessThan('$(VisualStudioVersion)', '18.0'))" />
 </Project>

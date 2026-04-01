@@ -69,9 +69,6 @@
     <!-- Require core web server and w3svc -->
     <Launch Condition="((IISCOREWEBENGINEINSTALLED = &quot;#1&quot;) AND (IISW3SVCINSTALLED = &quot;#1&quot;)) OR Installed" Message="!(loc.CoreWebW3SVC)" />
 
-    <!-- Require VC runtime version 14.30 or later (Visual C++ 2022 Redistributable) -->
-    <Launch Condition="Installed OR VC14REDIST_VERSION &gt;= &quot;v14.30&quot;" Message="!(loc.VC14RedistRequired)" />
-
     <!-- Directory Structure and Component Definitions -->
     <StandardDirectory Id="$(var.ProgramFilesFolder)">
       <Directory Id="IISModuleDirectory" Name="IIS">
