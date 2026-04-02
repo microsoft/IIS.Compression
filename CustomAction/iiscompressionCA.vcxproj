@@ -4,7 +4,6 @@
   <Import Project="$(IIS-Common)build\versions.props" Condition="Exists('$(IIS-Common)build\versions.props')" />
   <Import Project="$(IIS-Common)build\settings.props" Condition="Exists('$(IIS-Common)build\settings.props')" />
   <Import Project="$(IIS-Common)build\sign.props" Condition="Exists('$(IIS-Common)build\sign.props')" />
-  <Import Project="..\packages\WiX.3.14.1\build\wix.props" Condition="Exists('..\packages\WiX.3.14.1\build\wix.props')" />
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|ARM64">
       <Configuration>Debug</Configuration>
@@ -81,9 +80,6 @@
     <RootNamespace>iiscompressionCA</RootNamespace>
     <ProjectName>iiscompressionCA</ProjectName>
   </PropertyGroup>
-  <PropertyGroup>
-    <WixNativeCATargetsPath Condition=" Exists('$(WixSdkPath)') ">$(WixSdkPath)\wix.nativeca.targets</WixNativeCATargetsPath>
-  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup>
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -99,13 +95,17 @@
     <OutDir>bin\$(Configuration)\$(PlatformTarget)\</OutDir>
     <IntDir>obj\$(Configuration)\$(PlatformTarget)\</IntDir>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.wixtoolset.dutil"  Version="6.0.3-dotnet.3" />
+    <PackageReference Include="Microsoft.wixtoolset.wcautil"  Version="6.0.3-dotnet.3" />
+  </ItemGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(IIS-Setup)iisca\lib;$(WixIncPath);$(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(IIS-Setup)iisca\lib;$(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <WarningLevel>Level3</WarningLevel>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>httpapi.lib;shlwapi.lib;ahadmin.lib;xmllite.lib;msi.lib;dutil.lib;wcautil.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>httpapi.lib;shlwapi.lib;ahadmin.lib;xmllite.lib;msi.lib;Version.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
       <SubSystem>Windows</SubSystem>
     </Link>
@@ -117,7 +117,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Platform)'=='Win32'">
     <Link>
-      <AdditionalLibraryDirectories>$(VC_ReferencesPath_x86);$(WindowsSDK_LibraryPath)\$(PlatformTarget);$(WixLibPath)x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(VC_ReferencesPath_x86);$(WindowsSDK_LibraryPath)\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <TargetMachine>MachineX86</TargetMachine>
       <GenerateDebugInformation Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">DebugFull</GenerateDebugInformation>
     </Link>
@@ -131,7 +131,7 @@
       <SupportJustMyCode Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</SupportJustMyCode>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(VC_ReferencesPath_x64);$(WindowsSDK_LibraryPath)\$(PlatformTarget);$(WixLibPath)x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(VC_ReferencesPath_x64);$(WindowsSDK_LibraryPath)\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <TargetMachine>Machinex64</TargetMachine>
       <GenerateDebugInformation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">DebugFull</GenerateDebugInformation>
     </Link>
@@ -142,7 +142,7 @@
       <SupportJustMyCode Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">false</SupportJustMyCode>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(VC_ReferencesPath_ARM64EC);$(WindowsSDK_LibraryPath)\$(PlatformTarget);$(WixLibPath)x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(VC_ReferencesPath_ARM64EC);$(WindowsSDK_LibraryPath)\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64EC'">DebugFull</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -152,22 +152,11 @@
       <SupportJustMyCode Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">false</SupportJustMyCode>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(VC_ReferencesPath_ARM64);$(WindowsSDK_LibraryPath)\$(PlatformTarget);$(WixLibPath)x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(VC_ReferencesPath_ARM64);$(WindowsSDK_LibraryPath)\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">DebugFull</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <Import Project="$(WixNativeCATargetsPath)" Condition=" '$(WixNativeCATargetsPath)' != '' " />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.NativeCA.targets" Condition=" '$(WixNativeCATargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.NativeCA.targets') " />
-  <Target Name="EnsureWixToolsetInstalled" BeforeTargets="_PrepareForBuild" Condition=" '$(WixNativeCATargetsImported)' != 'true' ">
-    <Error Text="The WiX package must be installed to build this project." />
-  </Target>
-  <PropertyGroup>
-    <WixLibPath Condition=" Exists('$(WixSdkPath)') ">$(WixSdkPath)\$(WixPlatformToolset)\lib\</WixLibPath>
-    <WixLibPath Condition=" '$(WixLibPath)' == '' ">$(WIX)sdk\$(WixPlatformToolset)\lib\</WixLibPath>
-    <WixIncPath Condition=" Exists('$(WixSdkPath)') ">$(WixSdkPath)\inc\</WixIncPath>
-    <WixIncPath Condition=" '$(WixIncPath)' == '' ">$(WIX)sdk\$(WixPlatformToolset)\inc\</WixIncPath>
-  </PropertyGroup>
   <Target Name="EnsureImportsExist" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project is trying to import a missing file: {0}.</ErrorText>
@@ -181,4 +170,5 @@
   </Target>
   <Import Project="..\packages\microsoft.visualstudioeng.microbuild.core.$(MicroBuildVersion)\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets" Condition="Exists('..\packages\microsoft.visualstudioeng.microbuild.core.$(MicroBuildVersion)\build\Microsoft.VisualStudioEng.MicroBuild.Core.targets')" />
   <Import Project="$(IIS-Common)build\copy-outputs.targets" Condition="Exists('$(IIS-Common)build\copy-outputs.targets')" />
+  <Target Name="ResolveNuGetPackageAssets" Condition="$([MSBuild]::VersionLessThan('$(VisualStudioVersion)', '18.0'))" />
 </Project>
