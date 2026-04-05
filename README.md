@@ -21,7 +21,7 @@ Download the Microsoft IIS Compression release from the following locations:
     
 The IIS Compression installer registers `iisbrotli.dll` as the `br` (Brotli) compression scheme provider in `applicationHost.config`. It also replaces the default `gzip` compression scheme provider `gzip.dll` with `iiszlib.dll`. A sample `httpCompression` section in `applicationHost.config` is shown below:
 
-```
+```xml
 <httpCompression directory="%SystemDrive%\inetpub\temp\IIS Temporary Compressed Files">
     <scheme name="br" dll="%ProgramFiles%\IIS\IIS Compression\iisbrotli.dll" />
     <scheme name="gzip" dll="%ProgramFiles%\IIS\IIS Compression\iiszlib.dll" />
