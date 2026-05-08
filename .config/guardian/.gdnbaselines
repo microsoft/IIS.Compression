@@ -220,6 +220,24 @@
       "createdDate": "2025-02-13 01:03:51Z",
       "expirationDate": "2025-08-02 01:05:30Z",
       "justification": "This error is baselined with an expiration date of 180 days from 2025-02-13 01:05:30Z"
+    },
+    "e37031ee79362c9ff0735013edbeb833842bd30450c977d39d271f9d74c2c6a8": {
+      "signature": "e37031ee79362c9ff0735013edbeb833842bd30450c977d39d271f9d74c2c6a8",
+      "alternativeSignatures": [
+        "822d02459337aa61460710bc478bfa54f80107394b9a6e80edf431d87dd1a2f1",
+        "4be667cccc3e998bf38c265849d1b428bb8913c911304eb8557e1c3bb4951efe",
+        "ffe8122c9ae912b2b00ee3c26d5c9e7ccaf59ebdc25b2f0080ddcd26e3f09d43"
+      ],
+      "target": "Binaries/arm64/iiszlib.dll",
+      "uriBaseId": "file:///D:/a/_work/1/a/",
+      "memberOf": [
+        "default"
+      ],
+      "tool": "binskim",
+      "ruleId": "BA2007",
+      "createdDate": "2026-05-08 23:12:13Z",
+      "expirationDate": "2026-10-25 23:21:00Z",
+      "justification": "This error is baselined with an expiration date of 180 days from 2026-05-08 23:21:00Z"
     }
   }
 }
